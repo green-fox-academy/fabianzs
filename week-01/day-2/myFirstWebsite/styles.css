@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    margin:auto;
+    width:auto;
+}
+
+html {
+    background-color: black;
+}
+
+body {
+    max-width: 1100px;
+    width: auto;
+    padding: 0% 10%;
+}
+
+.header {
+    height: 40px;
+    padding: 10px 80px;
+    background-color: #333333;
+    font-family: Courier;
+}
+
+.svg{
+    margin: 5px;
+    float: left;
+}
+
+.byline {
+    margin: 8px;
+    text-transform: uppercase;
+    float: right;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.text {
+    background-image: url(assets/background.png);
+    width: auto;
+    height:1000px;
+    padding: 80px 80px;
+    font-family: Courier;
+    letter-spacing: -1px;
+}
+
+.space {
+    padding: 20px;
+    line-height: 60px;
+}
+
+.center {
+    text-align: center;
+}
+
+.color{
+    color: #ff0099;
+}
+
+h1 {
+    font-size: 48px;
+    font-family: Bree Serif;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    margin: 10px 0px 20px 0px;
+    font-size: 26px
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.size p {
+    font-size: 14px;
+}

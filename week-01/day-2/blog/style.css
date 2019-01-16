@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* { padding: 0px;
+    margin: 0px;
+    width:auto;
+}
+
+body {
+    font-family: Roboto;
+}
+
+header {
+    margin: 0rem 5rem;
+    padding: 0.5rem 5rem;
+    background-color: teal;
+    border: 0.05rem solid black;
+}
+
+h2, h3 {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: white;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+.newpost {
+    margin: 1rem 8rem;
+    padding: 1rem 2rem;
+    background-color: lightseagreen;
+}
+
+.grey {
+    color:#E6E6E6;
+}
+
+.posts {
+    margin: 1rem 8rem;
+    padding: 1rem 2rem;
+    border: black dashed 0.05rem;
+}
+
+.border {
+    border: 0.05rem solid black;
+    padding: 0.5em 0.5rem;
+    margin: 0.5rem 0rem;
+}
+
+.posts .border p {
+    padding-left: 0.5rem;
+}
+
+.short {
+    width: fit-content;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+}
+
+#button {
+    padding: 0.5rem 2rem;
+    background-color: #E6E6E6;
+    width: fit-content;
+    border-radius: 10px;
+    border: 0.05rem solid black;
+    font-size: 0.8rem;
+}
+
+#right {
+    text-align: right;
+}
