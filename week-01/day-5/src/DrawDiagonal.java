@@ -21,7 +21,7 @@ public class DrawDiagonal {
 
         System.out.println();
 
-        //Draws the lines, j specifies in which line we are in
+      /*  //Draws the lines, j specifies in which line we are in
         for (int j = 0; j < numberOfRows; j++) {
             if (j == 0) {
                 //If we are in the first line, it should draw as many % symbols as many lines are
@@ -52,7 +52,19 @@ public class DrawDiagonal {
             }
 
             System.out.println();
-        }
+        }*/
+
+      for (int i = 0; i < numberOfRows; i++) {
+          for (int j = 0; j < numberOfRows; j++) {
+              if (i == 0 || i == numberOfRows - 1 || j == 0 || j == numberOfRows - 1 || i == j ) {
+                  System.out.print("%");
+              } else {
+                  System.out.print(" ");
+              }
+
+          }
+          System.out.println();
+      }
 
     }
 }
