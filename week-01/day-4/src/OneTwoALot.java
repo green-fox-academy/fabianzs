@@ -23,6 +23,5 @@ public class OneTwoALot {
             System.out.println("A lot");
         }
 
-
     }
 }
