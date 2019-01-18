@@ -23,7 +23,7 @@ public class DrawSquare {
         System.out.println();
 
 
-        for (int j = 0; j < numberOfRows; j++) {
+        /*for (int j = 0; j < numberOfRows; j++) {
             if (j == 0) {
                 for (int i = 0; i < numberOfRows; i++) {
                     System.out.print("%");
@@ -46,7 +46,18 @@ public class DrawSquare {
             }
 
             System.out.println();
-        }
+        }*/
 
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfRows; j++) {
+                if (i == 0 || i == numberOfRows - 1 || j == 0 || j == numberOfRows - 1) {
+                    System.out.print("%");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+        }
     }
 }
