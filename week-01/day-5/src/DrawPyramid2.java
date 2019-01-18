@@ -22,7 +22,7 @@ public class DrawPyramid2 {
 
         System.out.println();
 
-        for (int a = 0; a <numberOfRows; a++) {
+        /*for (int a = 0; a <numberOfRows; a++) {
 
             for (int b = a; b < numberOfRows; b++) {
                 System.out.print(" ");
@@ -32,6 +32,17 @@ public class DrawPyramid2 {
                 System.out.print("*");
             }
 
+            System.out.println();
+        }*/
+
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = numberOfRows; j > i; j--) {
+                System.out.print(" ");
+            }
+
+            for (int k = 0; k <= (i * 2); k++) {
+                System.out.print("*");
+            }
             System.out.println();
         }
 
