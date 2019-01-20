@@ -36,7 +36,7 @@ public class ParametricAverage {
 
         } while (i < number);
 */
-        double average = (double)sum / (double)number;
+        double average = sum / (double) number;
 
         System.out.println("Sum: " + sum + ", Average: " + average);
 
