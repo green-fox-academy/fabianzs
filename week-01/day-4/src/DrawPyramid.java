@@ -25,15 +25,15 @@ public class DrawPyramid {
         int numberOfStars = 2 * numberOfRows - 1;
 
         //Sorok rajzolása
-        for (int i = 0; i < numberOfStars; i += 2) {
+        for (int i = 0; i < numberOfRows; i++) {
 
             //Szóközök rajzolása
-            for (int j = numberOfStars - 1 ; j > i; j -= 2 ) {
+            for (int j = numberOfRows -1 ; j > i; j -- ) {
                 System.out.print(" ");
             }
 
             //Csillagok rajzolása
-            for (int k = 0; k <= i; k++) {
+            for (int k = 0; k <= (2*i); k++) {
                 System.out.print("*");
                }
             System.out.println();
