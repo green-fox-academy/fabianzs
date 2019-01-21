@@ -13,5 +13,11 @@ public class SumAll {
         }
 
         System.out.println(sum);
+
+        int sum1 = 0;
+        for (int tempSum : ai) {
+            sum1 = sum1 +tempSum;
+        }
+        System.out.println(sum1);
     }
 }
