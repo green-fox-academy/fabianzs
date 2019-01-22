@@ -30,6 +30,15 @@ public class DiagonalMatrix {
 
         }
 
+        System.out.println("\n");
+
+        for (int[] row : matrix) {
+            for (int column : row) {
+                System.out.print(column + " ");
+            }
+            System.out.println();
+        }
+
 
     }
 }
