@@ -26,7 +26,7 @@ public class QuoteSwap{
         for (int i = 0; i < listToSwap.size(); i++) {
             swappedList = swappedList + listToSwap.get(i) + " ";
         }
-        
+
         return swappedList;
     }
 }
