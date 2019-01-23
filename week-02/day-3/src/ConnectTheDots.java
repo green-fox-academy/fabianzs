@@ -45,6 +45,7 @@ public class ConnectTheDots {
     }
 
     public static void dotConnecter (int[][] dots, Graphics g ) {
+        g.setColor(new Color(0, 168, 107));
         for (int i = 1; i < dots.length; i++) {
             for (int j = 1; j < dots[i].length; j++) {
                 //System.out.print(dots[i][j] + " ");
