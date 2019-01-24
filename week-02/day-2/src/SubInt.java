@@ -18,23 +18,24 @@ public class SubInt {
         /*int[] numberArray = new int[]{1, 11, 34, 52, 61};*/
         ArrayList<Integer> numberArray = new ArrayList<>(Arrays.asList(1, 11, 34, 52, 61));
 
-        System.out.println(subInt(subInteger, numberArray));
-        System.out.println(subInt2(subInteger, numberArray));
+        System.out.println(findSubInt(subInteger, numberArray));
+        System.out.println(findSubInt2(subInteger, numberArray));
 
 
     }
 
-    public static List<Integer> subInt (int subInteger, List<Integer> numberArray) {
+    public static List<Integer> findSubInt (int subInteger, List<Integer> numberArray) {
 
         ArrayList<Integer> listToReturn = new ArrayList<>();
 
         char tempChar = (char) (subInteger + '0');
-        //System.out.println(tempChar);
+        System.out.println(tempChar);
 
         ArrayList<String> stringArray = new ArrayList<>();
+
         for (int i = 0; i < numberArray.size(); i++) {
             stringArray.add(String.valueOf(numberArray.get(i)));
-            //System.out.println(stringArray.get(i));
+            System.out.println(stringArray.get(i));
         }
 
         for (int i = 0; i < stringArray.size(); i++) {
@@ -42,19 +43,19 @@ public class SubInt {
             if (tempString.indexOf(tempChar) >= 0) {
                     listToReturn.add(i);
             }
-
         }
+
         return listToReturn;
     }
 
-    public static List<Integer> subInt2 (int subInteger, List<Integer> numberArray) {
+    public static List<Integer> findSubInt2 (int subInteger, List<Integer> numberArray) {
 
         ArrayList<Integer> listToReturn = new ArrayList<>();
 
-
         for (int i = 0; i < numberArray.size(); i++) {
            int tempInt = numberArray.get(i);
-           //System.out.println(numberArray.get(i));
+            System.out.println(numberArray.get(i));
+
            if (tempInt == subInteger) {
                listToReturn.add(i);
             } else {
@@ -64,10 +65,9 @@ public class SubInt {
                    }
                    tempInt = tempInt / 10;
                }
-
            }
-
         }
+
         return listToReturn;
     }
 }
