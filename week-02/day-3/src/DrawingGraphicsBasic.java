@@ -26,6 +26,17 @@ public class DrawingGraphicsBasic extends JPanel {
         g.fill3DRect(25, 500, 100, 30, true);
 
 
+        for (int i = 0; i < 10; i++) {
+            int red = 0;
+            for (int j = 0; j < 10 ; j++, red++){
+                g.setColor(new Color(red * 25, 255, 255));
+                g.fillRect(j * 100, i * 100, 75, 75);
+
+            }
+
+        }
+
+
     }
 
 }
