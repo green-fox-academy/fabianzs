@@ -22,11 +22,7 @@ public class Checkerboard {
                 }
                 drawSquare(x, y, graphics);
             }
-
         }
-
-
-
     }
 
     // Don't touch the code below
@@ -42,6 +38,27 @@ public class Checkerboard {
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
         jFrame.pack();
+
+
+
+        String[][] chess = {
+                {"x", " ", "x", " ", "x", " ", "x", " ",},
+                {" ", "x", " ", "x", " ", "x", " ", "x",},
+                {"x", " ", "x", " ", "x", " ", "x", " ",},
+                {" ", "x", " ", "x", " ", "x", " ", "x",},
+                {"x", " ", "x", " ", "x", " ", "x", " ",},
+                {" ", "x", " ", "x", " ", "x", " ", "x",},
+                {"x", " ", "x", " ", "x", " ", "x", " ",},
+                {" ", "x", " ", "x", " ", "x", " ", "x",},
+        };
+
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                if (chess[row][column] == "x") {
+                } else {
+                }
+            }
+        }
     }
 
     static class ImagePanel extends JPanel {
