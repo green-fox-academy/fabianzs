@@ -35,7 +35,7 @@ public class DrawDiamond {
 
         for (int i = 0; i < halfOfRows; i++) {
 
-            for (int j = 0; j < halfOfRows - i; j++ ) {
+            for (int j = 0; j < halfOfRows - 1 - i; j++ ) {
                 System.out.print(" ");
             }
 
@@ -46,13 +46,13 @@ public class DrawDiamond {
             System.out.println();
         }
 
-        for (int a = halfOfRows -1; a > 0; a--) {
+        for (int i = halfOfRows - 1; i > 0; i--) {
 
-            for (int b = halfOfRows + 1; b > 0 + a; b-- ) {
+            for (int j = halfOfRows; j > i; j-- ) {
                 System.out.print(" ");
             }
 
-            for (int c = 0; c < (a * 2) -1; c++) {
+            for (int k = 0; k < (i * 2) -1; k++) {
                 System.out.print("*");
             }
 
