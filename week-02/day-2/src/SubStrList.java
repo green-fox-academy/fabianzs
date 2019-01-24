@@ -11,13 +11,13 @@ public class SubStrList {
         String[] searchArr = new String[] {"this", "is", "what", "I'm", "searching"};
 
 
-        System.out.println(subStrList("ching", searchArr));
+        System.out.println(subStrList2("ching", searchArr));
         //  should print: `4`
-        System.out.println(subStrList("not", searchArr));
+        System.out.println(subStrList2("not", searchArr));
         //  should print: `-1`
-        System.out.println(subStrList("ha", searchArr));
-        System.out.println(subStrList("'m", searchArr));
-        System.out.println(subStrList("whi", searchArr));
+        System.out.println(subStrList2("ha", searchArr));
+        System.out.println(subStrList2("'m", searchArr));
+        System.out.println(subStrList2("whi", searchArr));
 
     }
 
@@ -34,6 +34,17 @@ public class SubStrList {
                         return i;
                     }
                 }
+            }
+        }
+        return -1;
+    }
+
+    public static int subStrList2 (String subString, String[] searchArr) {
+
+        for (int i = 0; i < searchArr.length; i++) {
+            String stringToCheck = searchArr[i];
+            if (stringToCheck.contains(subString)) {
+                return i;
             }
         }
         return -1;
