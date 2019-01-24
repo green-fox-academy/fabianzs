@@ -6,34 +6,22 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LinePlay {
     public static void mainDraw(Graphics graphics) {
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 0;
-        int y2 = 0;
+        int startx;
+        int starty;
+        int endx;
+        int endy;
 
-       int constant = 20;
+        int constant = 20;
 
-       graphics.setColor(Color.ORANGE);
-       for (int i = 0; i < WIDTH/constant; i++) {
-           x1 = i * constant;
-           y1 = 0;
-           x2 = WIDTH;
-           y2 = (i + 1) * constant;
+        for (int i = 0; i < WIDTH/constant; i++) {
+           startx = i * constant;
+           starty = 0;
+           endx = WIDTH;
+           endy = (i + 1) * constant;
 
-           graphics.drawLine(x1, y1, x2, y2);
-       }
-
-       graphics.setColor(Color.GREEN);
-       for (int i = 0; i < HEIGHT/constant ; i++) {
-           x1 = 0;
-           y1 = i * constant;
-           x2 = (i + 1) * constant;
-           y2 = HEIGHT;
-
-           graphics.drawLine(x1,y1,x2,y2);
-       }
-
-
+           drawLines(startx, starty, endx, endy, Color.ORANGE, graphics);
+           drawLines(starty, startx, endy, endx, Color.GREEN, graphics);
+        }
     }
 
     // Don't touch the code below
@@ -57,5 +45,10 @@ public class LinePlay {
             super.paintComponent(graphics);
             mainDraw(graphics);
         }
+    }
+
+    public static void drawLines (int startx, int starty, int endx, int endy, Color color, Graphics graphics) {
+        graphics.setColor(color);
+        graphics.drawLine(startx, starty, endx, endy);
     }
 }
