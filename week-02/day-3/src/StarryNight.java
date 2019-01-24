@@ -12,6 +12,7 @@ public class StarryNight {
         //  - The stars should have random positions on the canvas
         //  - The stars should have random color (some shade of grey)
 
+        graphics.setColor(new Color(20,20,20));
         graphics.fillRect(0,0,WIDTH,HEIGHT);
 
         int x;
@@ -19,6 +20,7 @@ public class StarryNight {
         int size;
 
 
+        //Random stars
         for (int i = 0; i < 2000 ; i++) {
             x = (int) (Math.random() * WIDTH);
             y = (int) (Math.random() * HEIGHT);
@@ -26,6 +28,42 @@ public class StarryNight {
 
             drawStars(x, y, size, graphics);
         }
+
+        //Stars for the belt
+        for (int i = 0; i < 600 ; i++) {
+            x = 250 + (int) (Math.random() * 150);
+            y = (int) (Math.random() * HEIGHT);
+            size = (int) (Math.random() * 3);
+
+            drawLightStars(x, y, size, graphics);
+        }
+
+
+        //Deathstar
+        graphics.setColor(Color.GRAY);
+        graphics.fillOval(800,150,200,200);
+
+        //Deathstar shadow
+        graphics.setColor(new Color(20,20,20, 40));
+        graphics.fillOval(743,150,200,200);
+
+        //Smaller circle
+        graphics.setColor(new Color(85,85,85));
+        graphics.fillOval(920,205,40,40);
+
+        //Sharow for the smaller circle
+        graphics.setColor(new Color(20,20,20,80));
+        graphics.fillArc(932,208,28,35,270,180);
+
+        //Line in the middle
+        graphics.setColor(new Color(30,30,30, 80));
+        graphics.drawLine(800,260, 1000, 260 );
+        graphics.drawLine(800,259, 1000, 259 );
+        graphics.drawLine(800,258, 1000, 258 );
+
+
+
+
 
 
 
@@ -58,6 +96,12 @@ public class StarryNight {
 
     public static void drawStars (int x, int y, int size, Graphics graphics) {
         int c = (int) (Math.random() * 255);
+        graphics.setColor(new Color(c, c, c));
+        graphics.fillRect(x, y, size, size);
+    }
+
+    public static void drawLightStars (int x, int y, int size, Graphics graphics) {
+        int c = (int) (80 + (Math.random() * 134));
         graphics.setColor(new Color(c, c, c));
         graphics.fillRect(x, y, size, size);
     }
