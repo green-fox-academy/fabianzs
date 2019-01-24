@@ -6,43 +6,30 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LinePlayQuarters {
     public static void mainDraw(Graphics graphics) {
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 0;
-        int y2 = 0;
+        int startx;
+        int starty;
+        int endx;
+        int endy;
 
-        int divide = 2;
-
+        int divide = 4;
         int constant = 20;
+        int dividedSize = HEIGHT / divide;
+        int dividedConstant = constant / divide;
 
-        for (int k = 0; k < HEIGHT; k+=HEIGHT/divide) {
-            for (int j = 0; j < WIDTH; j+=WIDTH/divide) {
+        for (int k = 0; k < HEIGHT; k+=dividedSize) {
+            for (int j = 0; j < WIDTH; j+=dividedSize) {
                 graphics.setColor(Color.ORANGE);
                 for (int i = 0; i < WIDTH/constant; i++) {
-                    x1 = i * constant/divide + j;
-                    y1 = 0 + k;
-                    x2 = WIDTH/divide + j;
-                    y2 = (i + 1) * constant/divide + k;
+                    startx = i * dividedConstant + j;
+                    starty = 0 + k;
+                    endx = dividedSize + j;
+                    endy = (i + 1) * dividedConstant + k;
 
-                    graphics.drawLine(x1, y1, x2, y2);
-
-                }
-
-                graphics.setColor(Color.GREEN);
-                for (int i = 0; i < HEIGHT/constant ; i++) {
-                    x1 = 0 + k;
-                    y1 = i * constant/divide + j;
-                    x2 = (i + 1) * constant/divide + k;
-                    y2 = HEIGHT/divide + j;
-
-                    graphics.drawLine(x1,y1,x2,y2);
-
+                    drawLines(startx, starty, endx, endy, Color.ORANGE, graphics);
+                    drawLines(starty, startx, endy, endx, Color.GREEN, graphics);
                 }
             }
         }
-
-
-
     }
 
     // Don't touch the code below
@@ -66,5 +53,10 @@ public class LinePlayQuarters {
             super.paintComponent(graphics);
             mainDraw(graphics);
         }
+    }
+
+    public static void drawLines (int startx, int starty, int endx, int endy, Color color, Graphics graphics) {
+        graphics.setColor(color);
+        graphics.drawLine(startx, starty, endx, endy);
     }
 }
