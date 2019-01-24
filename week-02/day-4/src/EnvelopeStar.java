@@ -6,55 +6,58 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class EnvelopeStar {
     public static void mainDraw(Graphics graphics) {
-        int x1 = 0;
-        int y1 = 0;
-        int x2 = 0;
-        int y2 = 0;
+        int startx = 0;
+        int starty = 0;
+        int endx = 0;
+        int endy = 0;
 
         int divide = 2;
 
         int constant = 20;
 
+        int dividedSize = HEIGHT / divide;
+        int dividedConstant = constant / divide;
+
         graphics.setColor(Color.ORANGE);
 
         //Left bottom
         for (int i = 0; i <= WIDTH/constant; i++) {
-            x1 = i * constant/divide;
-            y1 = HEIGHT/divide;
-            x2 = WIDTH/divide;
-            y2 = (i + 1) * constant/divide + HEIGHT/divide;
+            startx = i * dividedConstant;
+            starty = dividedSize;
+            endx = dividedSize;
+            endy = (i + 1) * dividedConstant + dividedSize;
 
-            graphics.drawLine(x1, y1, x2, y2);
+            graphics.drawLine(startx, starty, endx, endy);
         }
 
         //Right bottom
         for (int i = 0; i < WIDTH/constant; i++) {
-            x1 = WIDTH/divide;
-            y1 = 2 * HEIGHT/divide - i * constant/divide;
-            x2 = (i + 1) * constant/divide + WIDTH/divide;
-            y2 = HEIGHT/divide;
+            startx = dividedSize;
+            starty = 2 * dividedSize - i * dividedConstant;
+            endx = (i + 1) * dividedConstant + dividedSize;
+            endy = dividedSize;
 
-            graphics.drawLine(x1, y1, x2, y2);
+            graphics.drawLine(startx, starty, endx, endy);
         }
 
         //Right up
         for (int i = 0; i < WIDTH/constant ; i++) {
-            x1 = WIDTH/divide;
-            y1 = i * constant/divide;
-            x2 = (i + 1) * constant/divide + WIDTH/divide;
-            y2 = HEIGHT/divide;
+            startx = dividedSize;
+            starty = i * dividedConstant;
+            endx = (i + 1) * dividedConstant + dividedSize;
+            endy = dividedSize;
 
-            graphics.drawLine(x1, y1, x2, y2);
+            graphics.drawLine(startx, starty, endx, endy);
         }
 
         //Left up
         for (int i = 0; i <= WIDTH/constant; i++) {
-            x1 = i * constant/divide;
-            y1 = HEIGHT/divide;
-            x2 = WIDTH/divide;
-            y2 = HEIGHT/divide - (i + 1) * constant/divide;
+            startx = i * dividedConstant;
+            starty = dividedSize;
+            endx = dividedSize;
+            endy = dividedSize - (i + 1) * dividedConstant;
 
-            graphics.drawLine(x1, y1, x2, y2);
+            graphics.drawLine(startx, starty, endx, endy);
         }
 
 
@@ -82,5 +85,10 @@ public class EnvelopeStar {
             super.paintComponent(graphics);
             mainDraw(graphics);
         }
+    }
+
+    public static void drawLines (int startx, int starty, int endx, int endy, Color color, Graphics graphics) {
+        graphics.setColor(color);
+        graphics.drawLine(startx, starty, endx, endy);
     }
 }
