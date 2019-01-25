@@ -15,36 +15,26 @@ public class SubInt {
         //  should print: '[]'
 
         int subInteger = 1;
-        /*int[] numberArray = new int[]{1, 11, 34, 52, 61};*/
         ArrayList<Integer> numberArray = new ArrayList<>(Arrays.asList(1, 11, 34, 52, 61));
 
         System.out.println(findSubInt(subInteger, numberArray));
         System.out.println(findSubInt2(subInteger, numberArray));
-
-
     }
 
     public static List<Integer> findSubInt (int subInteger, List<Integer> numberArray) {
 
-        ArrayList<Integer> listToReturn = new ArrayList<>();
-
-        char tempChar = (char) (subInteger + '0');
-        System.out.println(tempChar);
-
         ArrayList<String> stringArray = new ArrayList<>();
+        String subString = String.valueOf(subInteger);
+
+        ArrayList<Integer> listToReturn = new ArrayList<>();
 
         for (int i = 0; i < numberArray.size(); i++) {
             stringArray.add(String.valueOf(numberArray.get(i)));
-            System.out.println(stringArray.get(i));
-        }
-
-        for (int i = 0; i < stringArray.size(); i++) {
-            String tempString = stringArray.get(i);
-            if (tempString.indexOf(tempChar) >= 0) {
-                    listToReturn.add(i);
+            String stringToCheck = stringArray.get(i);
+            if (stringToCheck.contains(subString)) {
+                listToReturn.add(i);
             }
         }
-
         return listToReturn;
     }
 
@@ -53,21 +43,19 @@ public class SubInt {
         ArrayList<Integer> listToReturn = new ArrayList<>();
 
         for (int i = 0; i < numberArray.size(); i++) {
-           int tempInt = numberArray.get(i);
-            System.out.println(numberArray.get(i));
+           int integerToCheck = numberArray.get(i);
 
-           if (tempInt == subInteger) {
+           if (integerToCheck == subInteger) {
                listToReturn.add(i);
             } else {
-               while (tempInt > subInteger) {
-                   if (tempInt % 10 == subInteger) {
+               while (integerToCheck > subInteger) {
+                   if (integerToCheck % 10 == subInteger) {
                        listToReturn.add(i);
                    }
-                   tempInt = tempInt / 10;
+                   integerToCheck = integerToCheck / 10;
                }
            }
         }
-
         return listToReturn;
     }
 }
