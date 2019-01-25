@@ -34,15 +34,12 @@ public class DrawDiamond {
         System.out.println();
 
         for (int i = 0; i < halfOfRows; i++) {
-
             for (int j = 0; j < halfOfRows - 1 - i; j++ ) {
                 System.out.print(" ");
             }
-
             for (int k = 0; k <= (i * 2); k++) {
                 System.out.print("*");
             }
-
             System.out.println();
         }
 
