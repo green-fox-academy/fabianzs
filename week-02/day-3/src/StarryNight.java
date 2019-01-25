@@ -44,16 +44,24 @@ public class StarryNight {
         graphics.fillOval(800,150,200,200);
 
         //Deathstar shadow
-        graphics.setColor(new Color(20,20,20, 40));
+        graphics.setColor(new Color(20,20,20, 70));
         graphics.fillOval(743,150,200,200);
 
         //Smaller circle
-        graphics.setColor(new Color(85,85,85));
+        graphics.setColor(new Color(110,110,110));
         graphics.fillOval(920,205,40,40);
 
-        //Sharow for the smaller circle
+        //Shadow for the smaller circle
         graphics.setColor(new Color(20,20,20,80));
         graphics.fillArc(932,208,28,35,270,180);
+
+        //Shadow for the smaller circle
+        graphics.setColor(new Color(20,20,20,90));
+        graphics.fillArc(935,209,22,33,90,180);
+
+        //Smallest circle
+        graphics.setColor(new Color(95,95,95));
+        graphics.fillOval(935,220,10,10);
 
         //Line in the middle
         graphics.setColor(new Color(30,30,30, 80));
