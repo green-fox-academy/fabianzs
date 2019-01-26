@@ -6,35 +6,11 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class EnvelopeStar2 {
     public static void mainDraw(Graphics graphics) {
-        int startx = 0;
-        int starty = 0;
-        int endx = 0;
-        int endy = 0;
 
         int divide = 4;
+        int spaceBetweenLines = 20;
 
-        int constant = 20;
-
-        int dividedSize = HEIGHT / divide;
-        int dividedConstant = constant / divide;
-
-        graphics.setColor(Color.ORANGE);
-
-        for (int k = 0; k < HEIGHT; k+= 2 * dividedSize) {
-            for (int j = 0; j < WIDTH; j += 2 * dividedSize) {
-                for (int i = 0; i <= WIDTH / constant; i++) {
-
-                    //Left bottom
-                    drawLines(i * dividedConstant + j, dividedSize + k, dividedSize + j, (i + 1) * dividedConstant + dividedSize + k, graphics);
-                    //Right bottom
-                    drawLines(dividedSize + j, 2 * dividedSize - (i - 1) * dividedConstant + k, i * dividedConstant + dividedSize + j, dividedSize + k, graphics);
-                    //Right up
-                    drawLines(dividedSize + j, (i - 1) * dividedConstant + k, i * dividedConstant + dividedSize + j, dividedSize + k, graphics);
-                    //Left up
-                    drawLines(i * dividedConstant + j, dividedSize + k, dividedSize + j, dividedSize - (i + 1) * dividedConstant + k, graphics);
-                }
-            }
-        }
+        drawLines(divide, spaceBetweenLines, Color.ORANGE, graphics);
     }
 
     // Don't touch the code below
@@ -60,7 +36,27 @@ public class EnvelopeStar2 {
         }
     }
 
-    public static void drawLines (int startx, int starty, int endx, int endy, Graphics graphics) {
-        graphics.drawLine(startx, starty, endx, endy);
+    public static void drawLines (int divide, int spaceBetweenLines, Color color, Graphics graphics) {
+        int dividedSize = HEIGHT / divide;
+        int dividedSpaceBetweenLines = spaceBetweenLines / divide;
+
+        graphics.setColor(color);
+
+        for (int k = 0; k < HEIGHT; k+= 2 * dividedSize) {
+            for (int j = 0; j < WIDTH; j += 2 * dividedSize) {
+                for (int i = 0; i <= WIDTH / spaceBetweenLines; i++) {
+                    int currentStartingPoint = i * dividedSpaceBetweenLines;
+
+                    //Left bottom
+                    graphics.drawLine(currentStartingPoint + j, dividedSize + k, dividedSize + j, currentStartingPoint + dividedSize + k);
+                    //Right bottom
+                    graphics.drawLine(dividedSize + j, 2 * dividedSize - currentStartingPoint + k, i * dividedSpaceBetweenLines + dividedSize + j, dividedSize + k);
+                    //Right up
+                    graphics.drawLine(dividedSize + j, i * dividedSpaceBetweenLines + k, i * dividedSpaceBetweenLines + dividedSize + j, dividedSize + k);
+                    //Left up
+                    graphics.drawLine(i * dividedSpaceBetweenLines + j, dividedSize + k, dividedSize + j, dividedSize - i * dividedSpaceBetweenLines + k);
+                }
+            }
+        }
     }
 }
