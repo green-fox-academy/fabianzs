@@ -11,12 +11,8 @@ public class Anagram {
     }
 
     public static boolean isAnagram (String s1, String s2) {
-        boolean status = true;
 
-        if (s1.length() != s2.length()) {
-            status = false;
-            return status;
-        } else {
+        if (s1.length() == s2.length()) {
             char[] s1Array = s1.toCharArray();
             char[] s2Array = s2.toCharArray();
 
@@ -24,16 +20,11 @@ public class Anagram {
             Arrays.sort(s2Array);
 
             if(Arrays.equals(s1Array, s2Array)) {
-                status = true;
-                return status;
-            } else {
-                status = false;
-                return status;
+                return true;
             }
-
         }
+        return false;
     }
-
 }
 
 
