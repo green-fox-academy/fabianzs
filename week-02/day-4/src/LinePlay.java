@@ -6,22 +6,12 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LinePlay {
     public static void mainDraw(Graphics graphics) {
-        int startx;
-        int starty;
-        int endx;
-        int endy;
 
-        int constant = 20;
 
-        for (int i = 0; i < WIDTH/constant; i++) {
-           startx = i * constant;
-           starty = 0;
-           endx = WIDTH;
-           endy = (i + 1) * constant;
+        int spaceBetweenLines = 20;
+        int canvasSize = WIDTH;
 
-           drawLines(startx, starty, endx, endy, Color.ORANGE, graphics);
-           drawLines(starty, startx, endy, endx, Color.GREEN, graphics);
-        }
+        drawLines(spaceBetweenLines, canvasSize, Color.ORANGE, Color.GREEN, graphics);
     }
 
     // Don't touch the code below
@@ -47,8 +37,17 @@ public class LinePlay {
         }
     }
 
-    public static void drawLines (int startx, int starty, int endx, int endy, Color color, Graphics graphics) {
-        graphics.setColor(color);
-        graphics.drawLine(startx, starty, endx, endy);
+    public static void drawLines (int spaceBetweenLines, int canvasSize, Color color1, Color color2, Graphics graphics) {
+
+        int numberOfLines = canvasSize / spaceBetweenLines;
+
+        for (int i = 0; i <= numberOfLines; i++) {
+            int currentStartingPoint = i * spaceBetweenLines;
+
+            graphics.setColor(color1);
+            graphics.drawLine(currentStartingPoint, 0, canvasSize, currentStartingPoint);
+            graphics.setColor(color2);
+            graphics.drawLine(0, currentStartingPoint, currentStartingPoint, canvasSize);
+        }
     }
 }
