@@ -6,30 +6,11 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LinePlayQuarters {
     public static void mainDraw(Graphics graphics) {
-        int startx;
-        int starty;
-        int endx;
-        int endy;
-
         int divide = 4;
-        int constant = 20;
-        int dividedSize = HEIGHT / divide;
-        int dividedConstant = constant / divide;
+        int canvasSize = WIDTH;
+        int spaceBetweenLines = 20;
 
-        for (int k = 0; k < HEIGHT; k+=dividedSize) {
-            for (int j = 0; j < WIDTH; j+=dividedSize) {
-                graphics.setColor(Color.ORANGE);
-                for (int i = 0; i < WIDTH/constant; i++) {
-                    startx = i * dividedConstant + j;
-                    starty = 0 + k;
-                    endx = dividedSize + j;
-                    endy = (i + 1) * dividedConstant + k;
-
-                    drawLines(startx, starty, endx, endy, Color.ORANGE, graphics);
-                    drawLines(starty, startx, endy, endx, Color.GREEN, graphics);
-                }
-            }
-        }
+        drawLines2(divide, spaceBetweenLines, canvasSize,Color.ORANGE, Color.GREEN, graphics);
     }
 
     // Don't touch the code below
@@ -55,8 +36,43 @@ public class LinePlayQuarters {
         }
     }
 
-    public static void drawLines (int startx, int starty, int endx, int endy, Color color, Graphics graphics) {
-        graphics.setColor(color);
-        graphics.drawLine(startx, starty, endx, endy);
+    public static void drawLines (int divide, int spaceBetweenLines, int canvasSize, Color color1, Color color2, Graphics graphics) {
+
+        int numberOfLines = canvasSize / spaceBetweenLines;
+        int sizeOfSquare = canvasSize / divide;
+
+        for (int k = 0; k < divide ; k++) {
+            for (int j = 0; j < divide; j++) {
+                for (int i = 0; i <= numberOfLines; i++) {
+                    int currentStartingPoint = i * spaceBetweenLines / divide;
+                    int currentStartingPointFromXOfSquare = currentStartingPoint + j * sizeOfSquare;
+                    int currentStartingPointFromYOfSquare = currentStartingPoint + k * sizeOfSquare;
+
+                    graphics.setColor(color1);
+                    graphics.drawLine(currentStartingPointFromXOfSquare, k * sizeOfSquare, (j + 1) * sizeOfSquare, currentStartingPointFromYOfSquare);
+                    graphics.setColor(color2);
+                    graphics.drawLine(j * sizeOfSquare, currentStartingPointFromYOfSquare, currentStartingPointFromXOfSquare, (k + 1) * sizeOfSquare);
+                }
+            }
+        }
+    }
+
+    public static void drawLines2 (int divide, int spaceBetweenLines, int canvasSize, Color color1, Color color2, Graphics graphics) {
+
+        int numberOfLines = canvasSize / spaceBetweenLines;
+        int sizeOfSquare = canvasSize / divide;
+
+        for (int k = 0; k < canvasSize ; k+= sizeOfSquare) {
+            for (int j = 0; j < canvasSize; j+=sizeOfSquare) {
+                for (int i = 0; i <= numberOfLines; i++) {
+                    int currentStartingPoint = i * spaceBetweenLines / divide;
+
+                    graphics.setColor(color1);
+                    graphics.drawLine(currentStartingPoint + j, k, sizeOfSquare + j, currentStartingPoint + k);
+                    graphics.setColor(color2);
+                    graphics.drawLine(j, currentStartingPoint + k, currentStartingPoint + j, sizeOfSquare + k);
+                }
+            }
+        }
     }
 }
