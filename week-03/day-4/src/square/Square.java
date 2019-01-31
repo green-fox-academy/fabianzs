@@ -10,11 +10,11 @@ public class Square {
         graphics.setColor(Color.ORANGE);
         graphics.fillRect(0,0, WIDTH, HEIGHT);
 
+
         graphics.setColor(Color.BLACK);
-        drawSquare(WIDTH, WIDTH, WIDTH,graphics);
-        //drawLines(WIDTH, graphics);
 
-
+        drawSquare(WIDTH, WIDTH, WIDTH, graphics);
+        //drawSquare2(WIDTH/2, WIDTH/2, WIDTH,graphics);
     }
 
     public static void drawSquare(int startX, int startY, int size, Graphics graphics) {
@@ -26,7 +26,21 @@ public class Square {
             drawSquare(startX , startY - size/3,size/3, graphics);
             drawSquare(startX-2*size/3 , startY - size/3,size/3, graphics);
             drawSquare(startX-size/3 , startY - 2*size/3,size/3, graphics);
+        }
+    }
 
+    public static void drawSquare2 (int origoX, int origoY, int base, Graphics graphics) {
+        if (base > 0) {
+
+            int[] xPoints = {origoX - base / 2, origoX + base / 2, origoX + base / 2, origoX - base / 2};
+            int[] yPoints = {origoY - base / 2, origoY - base / 2, origoY + base / 2, origoY + base / 2};
+
+            graphics.drawPolygon(xPoints, yPoints, 4);
+
+            drawSquare2(origoX - base/3, origoY,base/3, graphics);
+            drawSquare2(origoX + base/3, origoY,base/3, graphics);
+            drawSquare2(origoX, origoY - base/3,base/3, graphics);
+            drawSquare2(origoX, origoY + base/3,base/3, graphics);
         }
     }
 
