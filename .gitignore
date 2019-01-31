@@ -22,3 +22,5 @@
 *.zip
 *.tar.gz
 *.rar
+META-INF/
+
