@@ -25,7 +25,10 @@ public class Draw {
         //hexagon.drawHexagonFractal(WIDTH/2, WIDTH/2, WIDTH/2, 6, graphics);
 
         SierpinskiCarpet sierpinskiCarpet = new SierpinskiCarpet(WIDTH/ 3);
-        sierpinskiCarpet.drawSierpinskiCarpet(WIDTH/3, WIDTH/3, sierpinskiCarpet.size, 6, graphics);
+        //sierpinskiCarpet.drawSierpinskiCarpet(WIDTH/3, WIDTH/3, sierpinskiCarpet.size, 6, graphics);
+
+        SquareGrid squareGrid = new SquareGrid(WIDTH / 2, 16.0f);
+        squareGrid.drawSquareGrid(WIDTH/4, WIDTH/4, squareGrid.size, squareGrid.stroke, 4, graphics);
 
     }
 
