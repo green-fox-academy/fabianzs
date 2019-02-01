@@ -4,9 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Triangle {
-
     int base;
-    int level;
 
     public Triangle(int base) {
         this.base = base;

@@ -17,14 +17,23 @@ public class Draw {
         //triangle.drawTriangleFractal(WIDTH/2, WIDTH/3, triangle.base, 6, graphics);
 
         Circle circle = new Circle(WIDTH/2);
-        circle.drawCircleFractal(0, 0, circle.radius, 5, graphics);
+        //circle.drawCircle(0,0,circle.radius, graphics);
+        //circle.drawCircleFractal(0, 0, circle.radius, 5, graphics);
+
+        Hexagon hexagon = new Hexagon(WIDTH/2);
+        //hexagon.drawHexagon(WIDTH/2, WIDTH/2, WIDTH/2, graphics);
+        //hexagon.drawHexagonFractal(WIDTH/2, WIDTH/2, WIDTH/2, 6, graphics);
+
+        SierpinskiCarpet sierpinskiCarpet = new SierpinskiCarpet(WIDTH/ 3);
+        sierpinskiCarpet.drawSierpinskiCarpet(WIDTH/3, WIDTH/3, sierpinskiCarpet.size, 6, graphics);
+
     }
 
 
 
     // Don't touch the code below
-    static int WIDTH = 500;
-    static int HEIGHT = 500;
+    static int WIDTH = 729;
+    static int HEIGHT = 729;
 
     public static void main(String[] args) {
         JFrame jFrame = new JFrame("Drawing");
