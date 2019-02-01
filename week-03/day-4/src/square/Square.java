@@ -15,7 +15,7 @@ public class Square {
 
         //drawSquare(WIDTH, WIDTH, WIDTH, graphics);
         //drawSquare2(WIDTH/2, WIDTH/2, WIDTH,graphics);
-        drawSquare3(WIDTH, 0, 0, WIDTH, graphics);
+        drawSquare3(0, 0, WIDTH, graphics);
     }
 
     public static void drawSquare(int startX, int startY, int size, Graphics graphics) {
@@ -45,15 +45,15 @@ public class Square {
         }
     }
 
-    public static void drawSquare3(int canvas, int startX, int startY, int size, Graphics graphics) {
+    public static void drawSquare3(int startX, int startY, int size, Graphics graphics) {
         if (size > 0) {
 
             graphics.drawRect(startX, startY, size, size);
 
-            drawSquare3(canvas, startX + size/3 , startY,size/3, graphics);
-            drawSquare3(canvas, startX , startY + size/3,size/3, graphics);
-            drawSquare3(canvas, startX + 2*size/3 , startY + size/3,size/3, graphics);
-            drawSquare3(canvas, startX + size/3 , startY + 2*size/3,size/3, graphics);
+            drawSquare3(startX + size/3 , startY,size/3, graphics);
+            drawSquare3(startX , startY + size/3,size/3, graphics);
+            drawSquare3(startX + 2*size/3 , startY + size/3,size/3, graphics);
+            drawSquare3(startX + size/3 , startY + 2*size/3,size/3, graphics);
         }
     }
 
