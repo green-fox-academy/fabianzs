@@ -69,8 +69,13 @@ public class Ship {
             }
 
             int numberOfDeaths = new Random().nextInt(anotherShip.crew.size() + 1);
-            for (int i = 0; i < numberOfDeaths; i++) {
-                anotherShip.crew.get(i).die();
+            int indexOfPirate = 0;
+            while (numberOfDeaths > 0 && indexOfPirate < anotherShip.crew.size()) {
+                if (anotherShip.crew.get(indexOfPirate).isAlive) {
+                    anotherShip.crew.get(indexOfPirate).die();
+                }
+                indexOfPirate++;
+                numberOfDeaths--;
             }
 
             return true;
@@ -93,8 +98,13 @@ public class Ship {
             }
 
             int numberOfDeaths = new Random().nextInt(crew.size() + 1);
-            for (int i = 0; i < numberOfDeaths; i++) {
-                crew.get(i).die();
+            int indexOfPirate = 0;
+            while (numberOfDeaths > 0 && indexOfPirate < crew.size()) {
+                if (crew.get(indexOfPirate).isAlive) {
+                    crew.get(indexOfPirate).die();
+                }
+                indexOfPirate++;
+                numberOfDeaths--;
             }
 
             return false;

@@ -19,9 +19,30 @@ public class Armada {
         for (int i = 0; i < randomNumber; i++) {
             armada.add(new Ship("randomShip"));
         }
+
+        for (int i = 0; i < armada.size(); i++) {
+            armada.get(i).fillShip("randomCaptain");
+        }
     }
 
-    public void war(Armada anotherArmada) {
+    public boolean war(Armada anotherArmada) {
+        int indexOfThisArmada = 0;
+        int indexOfAnotherArmada = 0;
+            while (indexOfThisArmada < this.armada.size() && indexOfAnotherArmada < anotherArmada.armada.size()) {
+                if (this.armada.get(indexOfThisArmada).battle(anotherArmada.armada.get(indexOfAnotherArmada))) {
+                    indexOfAnotherArmada++;
+                } else {
+                    indexOfThisArmada++;
+                }
+
+            }
+
+        if (indexOfThisArmada == this.armada.size()) {
+            return false;
+        } else {
+            return true;
+        }
+
 
     }
 }
