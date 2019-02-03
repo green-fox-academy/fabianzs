@@ -1,6 +1,7 @@
 package fractals;
 
 import java.awt.*;
+import java.util.Random;
 
 public class SquareGrid {
     int size;
@@ -14,6 +15,9 @@ public class SquareGrid {
     public void drawSquareGrid(int startX, int startY, int size, float stroke, int level, Graphics graphics) {
         Graphics2D g2 = (Graphics2D) graphics;
         g2.setStroke(new BasicStroke(stroke));
+
+        Color randomColor = new Color(new Random().nextInt(255),new Random().nextInt(255), new Random().nextInt(255));
+        graphics.setColor(randomColor);
 
         g2.drawRect(startX, startY, size, size);
 

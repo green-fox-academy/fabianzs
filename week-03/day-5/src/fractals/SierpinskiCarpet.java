@@ -1,6 +1,7 @@
 package fractals;
 
 import java.awt.*;
+import java.util.Random;
 
 public class SierpinskiCarpet {
     int size;
@@ -10,6 +11,8 @@ public class SierpinskiCarpet {
     }
 
     public void drawSierpinskiCarpet(int startX, int startY, int size,int level, Graphics graphics) {
+        Color randomColor = new Color(new Random().nextInt(255),new Random().nextInt(255), new Random().nextInt(255));
+        graphics.setColor(randomColor);
 
         graphics.fillRect(startX, startY, size, size);
 

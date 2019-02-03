@@ -7,8 +7,6 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Draw {
     public static void mainDraw(Graphics graphics) {
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0,0, WIDTH, HEIGHT);
 
         graphics.setColor(Color.BLACK);
 
@@ -28,9 +26,22 @@ public class Draw {
         //sierpinskiCarpet.drawSierpinskiCarpet(WIDTH/3, WIDTH/3, sierpinskiCarpet.size, 6, graphics);
 
         SquareGrid squareGrid = new SquareGrid(WIDTH / 2, 16.0f);
-        squareGrid.drawSquareGrid(WIDTH/4, WIDTH/4, squareGrid.size, squareGrid.stroke, 4, graphics);
+        //squareGrid.drawSquareGrid(WIDTH/4, WIDTH/4, squareGrid.size, squareGrid.stroke, 4, graphics);
+
+        KochLine kochLine = new KochLine(0, WIDTH / 2, WIDTH, WIDTH / 2);
+        //kochLine.drawKochLine(0,WIDTH / 2, WIDTH, WIDTH/2,6, graphics);
+
+        KochSnowflake kochSnowFlake = new KochSnowflake(5 * WIDTH / 6);
+        //kochSnowFlake.drawKochSnowflake(WIDTH /2,WIDTH/2, kochSnowFlake.base, 6, graphics);
+
+        KochSnowflake2 kochSnowflake2 = new KochSnowflake2(5 * WIDTH / 6);
+        //kochSnowflake2.drawKochSnowflake2(WIDTH / 2, WIDTH / 2, kochSnowflake2.base, 8, graphics);
+
+        Tree tree = new Tree(80);
+        tree.drawTree(WIDTH / 2, 9 * WIDTH / 10, tree.length, 0, 30, 7, graphics);
 
     }
+
 
 
 

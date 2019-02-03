@@ -11,8 +11,8 @@ public class Circle {
     }
 
     public void drawCircle(int startX, int startY, int radius, Graphics graphics) {
-        Color randomColor = new Color(new Random().nextInt(255),new Random().nextInt(255), new Random().nextInt(255));
-        graphics.setColor(randomColor);
+        //Color randomColor = new Color(new Random().nextInt(255),new Random().nextInt(255), new Random().nextInt(255));
+        //graphics.setColor(randomColor);
 
         graphics.drawOval(startX, startY, 2 * radius, 2 * radius);
     }
