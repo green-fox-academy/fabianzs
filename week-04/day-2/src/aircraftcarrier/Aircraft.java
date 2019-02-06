@@ -18,25 +18,22 @@ public class Aircraft {
     }
 
     public int refill(int ammo) {
-        int numberOfRemainingAmmo = ammo;
         int numberOfAmmosToBeFilled = this.maxAmmo - this.ammo;
-        if (this.ammo < this.maxAmmo && ammo > numberOfAmmosToBeFilled) {
-            numberOfRemainingAmmo -= numberOfAmmosToBeFilled;
-            this.ammo += numberOfAmmosToBeFilled;
-            return numberOfRemainingAmmo;
-        } else if (this.ammo < this.maxAmmo && ammo <= numberOfAmmosToBeFilled) {
+        if (numberOfAmmosToBeFilled > 0 && ammo <= numberOfAmmosToBeFilled) {
             this.ammo += ammo;
             return 0;
+        } else {
+            this.ammo += numberOfAmmosToBeFilled;
+            return ammo -= numberOfAmmosToBeFilled;
         }
-        return numberOfRemainingAmmo;
     }
 
     public String getType() {
-        return this.type;
+        return " Type " + this.type;
     }
 
     public String getStatus() {
-        return "Type " + this.type + ", Ammo: " + this.ammo + ", Base Damage: " + this.baseDamage + ", All Damage: " + this.baseDamage * this.ammo;
+        return this.getType() + ", Ammo: " + this.ammo + ", Base Damage: " + this.baseDamage + ", All Damage: " + this.baseDamage * this.ammo;
     }
 
     public boolean isPriority() {
