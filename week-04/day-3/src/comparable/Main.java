@@ -24,6 +24,8 @@ public class Main {
         }
         System.out.println();
 
+        printLine();
+
         List<Thing> todos = new ArrayList<>();
         todos.add(new Thing("shopping", true));
         todos.add(new Thing("showering", false));
@@ -38,13 +40,26 @@ public class Main {
             System.out.println(todo);
         }
 
+        printLine();
+
         for (Domino d : dominoes) {
             d.printAllFields();
         }
 
+        printLine();
+
         for (Thing t : todos) {
             t.printAllFields();
         }
+    }
+
+    public static void printLine() {
+        System.out.println();
+        for (int i = 0; i < 40; i++) {
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println();
     }
 
 }
