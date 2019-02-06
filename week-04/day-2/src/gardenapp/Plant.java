@@ -1,18 +1,17 @@
 package gardenapp;
 
 public class Plant {
-    String color;
-    String type;
-    int waterAmount;
+    protected String color;
+    protected String type;
+    protected int waterAmount;
     protected double waterAbsorbtion;
-    int whenToWater;
-    boolean needsWater;
+    protected int whenToWater;
+    protected boolean needsWater;
 
     public Plant(String color) {
         this.color = color;
         this.type = "Plant";
         this.waterAmount = 0;
-        this.waterAbsorbtion = 1;
         this.needsWater = true;
     }
 
@@ -20,15 +19,10 @@ public class Plant {
         this.color = color;
         this.type = "Plant";
         this.waterAmount = waterAmount;
-        this.waterAbsorbtion = 1;
-        if (this.waterAmount < this.whenToWater) {
-            this.needsWater = true;
-        } else {
-            this.needsWater = false;
-        }
+        this.updateNeedsWater();
     }
 
-    public void setNeedsWater() {
+    public void updateNeedsWater() {
         if (this.waterAmount < this.whenToWater) {
             this.needsWater = true;
         } else {
@@ -38,7 +32,7 @@ public class Plant {
 
     public void water(int amountOfWater) {
         this.waterAmount += amountOfWater * this.waterAbsorbtion;
-        this.setNeedsWater();
+        this.updateNeedsWater();
     }
 
     public void getState() {

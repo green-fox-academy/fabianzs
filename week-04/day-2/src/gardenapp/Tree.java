@@ -14,12 +14,12 @@ public class Tree extends Plant {
         this.type = "Tree";
         this.waterAbsorbtion = 0.4;
         this.whenToWater = 10;
-        this.setNeedsWater();
+        this.updateNeedsWater();
     }
 
     @Override
-    public void setNeedsWater() {
-       super.setNeedsWater();
+    public void updateNeedsWater() {
+       super.updateNeedsWater();
     }
 
     @Override

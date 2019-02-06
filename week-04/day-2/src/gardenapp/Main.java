@@ -1,24 +1,13 @@
 package gardenapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
-        Plant flower1 = new Flower("yellow");
-        Plant flower2 = new Flower("blue");
-        Plant tree1 = new Tree("purple");
-        Plant tree2 = new Tree("orange");
-        List<Plant> plants = new ArrayList<>();
-        plants.add(flower1);
-        plants.add(flower2);
-        plants.add(tree1);
 
         Garden garden = new Garden();
-        garden.addPlant(flower1);
-        garden.addPlant(flower2);
-        garden.addPlant(tree1);
-        garden.addPlant(tree2);
+        garden.addPlant(new Flower("yellow"));
+        garden.addPlant(new Flower("blue"));
+        garden.addPlant(new Tree("purple"));
+        garden.addPlant(new Tree("orange"));
 
         garden.getState();
         printLine();

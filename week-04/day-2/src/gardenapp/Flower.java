@@ -14,12 +14,12 @@ public class Flower extends Plant {
         this.type = "Flower";
         this.waterAbsorbtion = 0.75;
         this.whenToWater = 5;
-        this.setNeedsWater();
+        this.updateNeedsWater();
     }
 
     @Override
-    public void setNeedsWater() {
-        super.setNeedsWater();
+    public void updateNeedsWater() {
+        super.updateNeedsWater();
     }
 
     @Override
