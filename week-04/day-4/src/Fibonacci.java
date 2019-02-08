@@ -1,6 +1,6 @@
 public class Fibonacci {
 
-    public int calculateFibonacci (int n) {
+    public static int calculateFibonacci (int n) {
         if (n < 0) {
             throw new IndexOutOfBoundsException("The index of an element cannot be negative.");
         }
