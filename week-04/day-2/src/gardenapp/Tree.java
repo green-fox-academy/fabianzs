@@ -4,14 +4,12 @@ public class Tree extends Plant {
 
     public Tree(String color) {
         super(color);
-        this.type = "Tree";
         this.waterAbsorbtion = 0.4;
         this.whenToWater = 10;
     }
 
     public Tree(String color, int waterAmount) {
         super(color, waterAmount);
-        this.type = "Tree";
         this.waterAbsorbtion = 0.4;
         this.whenToWater = 10;
         this.updateNeedsWater();

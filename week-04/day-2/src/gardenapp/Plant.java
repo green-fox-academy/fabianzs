@@ -10,14 +10,12 @@ public class Plant {
 
     public Plant(String color) {
         this.color = color;
-        this.type = "Plant";
         this.waterAmount = 0;
         this.needsWater = true;
     }
 
     public Plant(String color, int waterAmount) {
         this.color = color;
-        this.type = "Plant";
         this.waterAmount = waterAmount;
         this.updateNeedsWater();
     }
@@ -37,9 +35,9 @@ public class Plant {
 
     public void getState() {
         if (needsWater) {
-            System.out.println("The " + this.color + " " + this.type + " needs water");
+            System.out.println("The " + this.color + " " + this.getClass().getSimpleName() + " needs water");
         } else {
-            System.out.println("The " + this.color + " " + this.type + " doesn't need water");
+            System.out.println("The " + this.color + " " + this.getClass().getSimpleName() + " doesn't need water");
         }
     }
 }
