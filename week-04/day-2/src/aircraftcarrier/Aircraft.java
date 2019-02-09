@@ -1,7 +1,6 @@
 package aircraftcarrier;
 
 public class Aircraft {
-    String type;
     int ammo;
     protected int maxAmmo;
     protected int baseDamage;
@@ -28,19 +27,11 @@ public class Aircraft {
         }
     }
 
-    public String getType() {
-        return " Type " + this.type;
-    }
-
     public String getStatus() {
-        return this.getType() + ", Ammo: " + this.ammo + ", Base Damage: " + this.baseDamage + ", All Damage: " + this.baseDamage * this.ammo;
+        return "Type " + getClass().getSimpleName() + ", Ammo: " + this.ammo + ", Base Damage: " + this.baseDamage + ", All Damage: " + this.baseDamage * this.ammo;
     }
 
     public boolean isPriority() {
-        if (this.type.equals("F35")) {
-            return true;
-        } else {
-            return false;
-        }
+        return getClass().getSimpleName().equals("F35");
     }
 }
