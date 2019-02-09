@@ -9,7 +9,7 @@ public class Fibonacci {
         // and so on. Define a recursive fibonacci(n) method that returns the nth
         // fibonacci number, with n=0 representing the start of the sequence.
 
-        System.out.println(calculateElementOfFibonacci(7));
+        System.out.println(calculateElementOfFibonacci(1));
     }
 
     public static int calculateElementOfFibonacci(int n) {
