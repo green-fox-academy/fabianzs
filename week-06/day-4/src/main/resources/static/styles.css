@@ -72,8 +72,8 @@ input[type="text"] {
     text-decoration: none;
 }
 
-input[type="text"]:focus {
-    outline: none;
+*:focus {
+    outline: none !important;
 }
 
 button {
