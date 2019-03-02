@@ -5,35 +5,11 @@
     <meta charset="UTF-8">
     <title>Basic Shop</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="/styles.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/style.css">
 </head>
 <body>
-<h1>
-    <a href="/webshop">My Shop</a>
-    <img src="gf.png" alt= "logo" height="60px" id="png">
-</h1>
-<div id="navigation">
-    <form method="get" action="/only-available">
-        <button type="submit">only available</button>
-    </form>
-    <form method="get" action="/cheapest-first">
-        <button type="submit">cheapest first</button>
-    </form>
-    <form method="get" action="/contains-nike">
-        <button type="submit">contains nike</button>
-    </form>
-    <form method="get" action="/average-stock">
-        <button type="submit">average stock</button>
-    </form>
-    <form method="get" action="/most-expensive">
-        <button type="submit">most expensive first</button>
-    </form>
+<div th:insert="header">
 </div>
-<p>Search for:</p>
-<form id="searchbar" method="post" action="/search">
-    <input type="text" name="search" placeholder="...something like nike">
-    <button id="search" type="submit">search</button>
-</form>
 <h id="stat" th:text="${stat}"></h>
 </body>
 </html>
