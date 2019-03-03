@@ -14,7 +14,7 @@ public class Exercise9 {
 
         Map<Character, Integer> characterFrequency2 = rainingStars.chars()
                 .mapToObj(c -> Character.toLowerCase((char) c))
-                .collect(Collectors.toMap(c1 -> c1, c1 -> 1, (c1, c2) -> c1 + c2));
+                .collect(Collectors.toMap(c1 -> c1, c1 -> 1, (c1, c2) -> c1 + c2)); // key, value, merge if key already exists
 
         System.out.println(characterFrequency2);
 

@@ -64,7 +64,7 @@ public class Main {
         System.out.println(groupedFoxes);
 
         Map<String, List<Fox>> groupedFoxes2 = foxes.stream()
-                .collect(Collectors.groupingBy(f -> f.getColor(), Collectors.toList()));
+                .collect(Collectors.groupingBy(f -> f.getColor()));
         System.out.println(groupedFoxes2);
 
         Map<String, List<String>> groupedFoxes3 = foxes.stream()
