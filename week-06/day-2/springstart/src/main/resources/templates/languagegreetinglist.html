@@ -5,6 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<p th:each="hello : ${hellos}"th:style="'color: rgb(' + ${color.nextInt(256)} + ', ' + ${color.nextInt(256)} + ', ' + ${color.nextInt(256)} + '); font-size: ' + ${size.nextInt(250)+50} + '%;'" th:text="${hello}"></p>
+<p th:each="hello : ${hellos}" th:style="'color: rgb(' + ${color.nextInt(256)} + ', ' + ${color.nextInt(256)} + ', ' + ${color.nextInt(256)} + '); font-size: ' + ${size.nextInt(250)+50} + '%;'" th:text="${hello}"></p>
 </body>
 </html>
