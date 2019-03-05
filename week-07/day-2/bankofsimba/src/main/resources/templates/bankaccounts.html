@@ -28,11 +28,19 @@
     </tr>
 </table>
 <form action="#" th:action="@{/bank/accounts}" method="post">
+    <label>Raise the balance of a selected animal:</label>
     <select name="animalIndex" >
         <option th:each="bankAccount : ${bankAccounts}" th:text="${bankAccount.name}" th:value="${bankAccountStat.index}"></option>
     </select>
     <input type="submit" value="Raise Balance">
 </form>
-
+<form action="#" th:action="@{/bank/accounts/add}" th:object="${newBankAccount}" method="post">
+    <input type="text" name="name" th:field="*{name}" required/>
+    <input type="text" name="balance" th:field="*{balance}" required/>
+    <input type="text" th:field="*{animalType}" required>
+<!--    <input type="checkbox" th:field="*{isKing}" required>-->
+    <!--<input type="text" th:field="*{goodness}">-->
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>

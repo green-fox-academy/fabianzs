@@ -40,6 +40,7 @@ public class BankOfSimbaController {
     @GetMapping("/bank/accounts")
     public String showBankAccounts(Model model) {
         model.addAttribute("bankAccounts", bankAccounts);
+        model.addAttribute("newBankAccount", new BankAccount());
         return "bankaccounts";
     }
 
@@ -48,5 +49,11 @@ public class BankOfSimbaController {
         bankAccounts.get(index).raiseBalance();
         model.addAttribute("bankAccounts", bankAccounts);
         return "bankaccounts";
+    }
+
+    @PostMapping("/bank/accounts/add")
+    public String addBankAccount(@ModelAttribute BankAccount newBankAccount) {
+        bankAccounts.add(newBankAccount);
+        return "redirect:/bank/accounts";
     }
 }

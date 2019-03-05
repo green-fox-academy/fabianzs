@@ -15,6 +15,10 @@ public class BankAccount {
         this.goodness = goodness;
     }
 
+    public BankAccount() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -41,5 +45,25 @@ public class BankAccount {
         } else {
             this.balance += 10;
         }
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
+    }
+
+    public void setKing(boolean king) {
+        isKing = king;
+    }
+
+    public void setGoodness(String goodness) {
+        this.goodness = goodness;
     }
 }
