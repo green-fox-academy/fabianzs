@@ -15,14 +15,14 @@ public class BankOfSimbaController {
 
     public BankOfSimbaController() {
         this.bankAccounts = new ArrayList<>();
-        this.bankAccounts.add(new BankAccount("Simba", 2000, "lion", true, "good"));
-        this.bankAccounts.add(new BankAccount("Timon", 200, "mungoose", false, "good"));
-        this.bankAccounts.add(new BankAccount("Pumba", 350, "wart-hog", false, "good"));
-        this.bankAccounts.add(new BankAccount("Ed", 800, "hyena", false, "bad"));
-        this.bankAccounts.add(new BankAccount("Mufasa", 3000, "lion", true, "good"));
-        this.bankAccounts.add(new BankAccount("Zazu", 1000, "toucan", false, "good"));
-        this.bankAccounts.add(new BankAccount("Nala", 1500, "lion", false, "good"));
-        this.bankAccounts.add(new BankAccount("Shenzi", 900, "hyena", false, "bad"));
+        this.bankAccounts.add(new BankAccount("Simba", 2000, "lion", true, true));
+        this.bankAccounts.add(new BankAccount("Timon", 200, "mungoose", false, true));
+        this.bankAccounts.add(new BankAccount("Pumba", 350, "wart-hog", false, true));
+        this.bankAccounts.add(new BankAccount("Ed", 800, "hyena", false, false));
+        this.bankAccounts.add(new BankAccount("Mufasa", 3000, "lion", true, true));
+        this.bankAccounts.add(new BankAccount("Zazu", 1000, "toucan", false, false));
+        this.bankAccounts.add(new BankAccount("Nala", 1500, "lion", false, true));
+        this.bankAccounts.add(new BankAccount("Shenzi", 900, "hyena", false, false));
     }
 
     @RequestMapping("/bank")

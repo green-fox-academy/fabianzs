@@ -23,8 +23,7 @@
         <!--<td class="index" th:if="${bankAccount.king}" th:text="King"></td>
         <td th:unless="${bankAccount.king}" th:text="' '"></td>-->
         <td class="index" th:text="${bankAccount.king} ? 'King' : ' '"></td>
-        <!--<td class="index" th:switch="${bankAccount.goodness}"><span th:case="'good'">Good Guy</span><span th:case="'bad'">Bad One</span> </td>-->
-        <td class="index" th:text="${bankAccount.goodness == 'good'} ? 'Good Guy' : 'Bad One'"></td>
+        <td class="index" th:text="${bankAccount.good} ? 'Good Guy' : 'Bad One'"></td>
     </tr>
 </table>
 <form action="#" th:action="@{/bank/accounts}" method="post">
@@ -37,9 +36,13 @@
 <form action="#" th:action="@{/bank/accounts/add}" th:object="${newBankAccount}" method="post">
     <input type="text" name="name" th:field="*{name}" required/>
     <input type="text" name="balance" th:field="*{balance}" required/>
-    <input type="text" th:field="*{animalType}" required>
-<!--    <input type="checkbox" th:field="*{isKing}" required>-->
-    <!--<input type="text" th:field="*{goodness}">-->
+    <input type="text" th:field="*{animalType}" required/>
+    <label th:text="'King:'"></label>
+    <input type="checkbox" th:field="*{king}"/>
+    <label th:text="'Good:'"></label>
+    <input type="radio" name="good" value="true" th:field="*{good}" checked>
+    <label th:text="'Bad:'"></label>
+    <input type="radio" name="good" value="false" th:field="*{good}">
     <input type="submit" value="Submit">
 </form>
 </body>
