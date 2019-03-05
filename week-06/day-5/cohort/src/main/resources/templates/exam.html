@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Exam type </th>
+        <th>Score</th>
+    </tr>
+    <tr th:each="exam : ${exams}">
+        <td th:text="${exam.type}"></td>
+        <td th:text="${exam.score}"></td>
+    </tr>
+</table>
+</body>
+</html>

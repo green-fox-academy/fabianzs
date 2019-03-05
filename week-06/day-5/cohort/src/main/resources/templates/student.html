@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Student name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Number of exams</th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.getName()}"></td>
+        <td th:text="${student.getGender()}"></td>
+        <td th:text="${student.getAge()}"></td>
+        <td th:text="${student.getExams().size()}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

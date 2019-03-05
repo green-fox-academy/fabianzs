@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Cohort name</th>
+        <th>Starting date</th>
+        <th>Number of students</th>
+    </tr>
+    <tr th:each="cohort : ${cohorts}">
+        <td th:text="${cohort.name}"></td>
+        <td th:text="${cohort.startedAt}"></td>
+        <td th:text="${cohort.students.size()}"></td>
+    </tr>
+</table>
+</body>
+</html>
