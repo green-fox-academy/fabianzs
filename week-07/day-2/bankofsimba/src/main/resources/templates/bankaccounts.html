@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank of Simba</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Animal Type</th>
+        <th>Index</th>
+        <th>King</th>
+        <th>Bad/Good</th>
+    </tr>
+    <tr th:each="bankAccount : ${bankAccounts}" th:class="${bankAccount.king} ? 'king' : ''">
+        <td th:text="${bankAccount.name}"></td>
+        <td th:text="|${#numbers.formatDecimal(bankAccount.balance, 1, 'NONE', 2, 'POINT')} Zebra|"></td>
+        <td th:text="${bankAccount.animalType}"></td>
+        <td class="index" th:text="${bankAccountStat.index}"></td>
+        <!--<td class="index" th:if="${bankAccount.king}" th:text="King"></td>
+        <td th:unless="${bankAccount.king}" th:text="' '"></td>-->
+        <td class="index" th:text="${bankAccount.king} ? 'King' : ' '"></td>
+        <!--<td class="index" th:switch="${bankAccount.goodness}"><span th:case="'good'">Good Guy</span><span th:case="'bad'">Bad One</span> </td>-->
+        <td class="index" th:text="${bankAccount.goodness == 'good'} ? 'Good Guy' : 'Bad One'"></td>
+    </tr>
+</table>
+<form action="#" th:action="@{/bank/accounts}" method="post">
+    <select name="animalIndex" >
+        <option th:each="bankAccount : ${bankAccounts}" th:text="${bankAccount.name}" th:value="${bankAccountStat.index}"></option>
+    </select>
+    <input type="submit" value="Raise Balance">
+</form>
+
+</body>
+</html>
