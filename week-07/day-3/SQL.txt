@@ -1,0 +1,189 @@
+//SQL Movie-Rating Query Exercises
+
+Q1
+Find the titles of all movies directed by Steven Spielberg. 
+
+SELECT title FROM Movie
+WHERE director = "Steven Spielberg";
+
+
+Q2
+Find all years that have a movie that received a rating of 4 or 5, and sort them in increasing order. 
+
+SELECT year FROM Movie, Rating
+WHERE Movie.mID = Rating.mID
+AND (Rating.stars = 4 OR Rating.stars = 5)
+GROUP BY Movie.year
+ORDER BY Movie.year;
+
+
+Q3
+Find the titles of all movies that have no ratings. 
+
+SELECT Movie.title FROM Movie LEFT JOIN Rating
+ON Movie.mID = Rating.mID
+WHERE Rating.mID IS NULL;
+
+
+Q4
+Some reviewers didn't provide a date with their rating. Find the names of all reviewers who have ratings with a NULL value for the date. 
+
+SELECT Reviewer.name FROM Rating
+JOIN Reviewer
+ON Reviewer.rID = Rating.rID
+WHERE Rating.ratingDate IS NULL;
+
+
+Q5
+Write a query to return the ratings data in a more readable format: reviewer name, movie title, stars, and ratingDate. Also, sort the data, first by reviewer name, then by movie title, and lastly by number of stars. 
+
+SELECT Reviewer.name, Movie.title, Rating.stars, Rating.ratingDate FROM Rating, Reviewer, Movie
+WHERE (Reviewer.rID = Rating.rID AND Movie.mID = Rating.mID)
+ORDER BY Reviewer.name, Movie.title, Rating.stars;
+
+SELECT Reviewer.name, Movie.title, Rating.stars, Rating.ratingDate FROM Rating
+JOIN Reviewer
+ON Reviewer.rID = Rating.rID
+JOIN Movie
+ON Movie.mID = Rating.mID
+ORDER BY Reviewer.name, Movie.title, Rating.stars;
+
+
+Q6
+For all cases where the same reviewer rated the same movie twice and gave it a higher rating the second time, return the reviewer's name and the title of the movie. 
+
+SELECT Reviewer.name, Movie.title FROM
+(SELECT * FROM Rating x1, Rating x2 WHERE x1.rID=x2.rID AND x1.mID=x2.mID AND x2.ratingDate>x1.ratingDate AND x2.stars>x1.stars) AS laterHigherRatings
+JOIN Movie
+ON Movie.mID = laterHigherRatings.mID
+JOIN Reviewer
+ON Reviewer.rID = laterHigherRatings.rID;
+
+
+Q7
+For each movie that has at least one rating, find the highest number of stars that movie received. Return the movie title and number of stars. Sort by movie title. 
+
+SELECT Movie.title, MAX(Rating.stars) FROM Rating
+JOIN Movie
+ON Movie.mID = Rating.mID
+GROUP BY Movie.title
+ORDER BY Movie.title;
+
+
+Q8
+For each movie, return the title and the 'rating spread', that is, the difference between highest and lowest ratings given to that movie. Sort by rating spread from highest to lowest, then by movie title.
+
+SELECT Movie.title, (MAX(Rating.stars) - MIN(Rating.stars)) AS "rating spread" FROM Movie
+JOIN Rating
+ON Movie.mID = Rating.mID
+GROUP BY Movie.title
+ORDER BY "rating spread" DESC;
+
+Q9
+Find the difference between the average rating of movies released before 1980 and the average rating of movies released after 1980. (Make sure to calculate the average rating for each movie, then the average of those averages for movies before 1980 and movies after. Don't just calculate the overall average rating before and after 1980.)
+
+SELECT * FROM Rating 
+JOIN Movie
+ON Rating.mID = Movie.mID
+JOIN (SELECT Rating.mID, AVG(Rating.stars) FROM Rating JOIN Movie ON Rating.mID = Movie.mID WHERE Movie.year < 1980 GROUP BY Rating.mID) AS MoviesBefore1980
+ON Rating.mID = MoviesBefore1980.mID
+GROUP BY Rating.mID;
+
+SELECT * FROM
+(SELECT Movie.title, AVG(Rating.stars) AS avgold FROM Rating JOIN Movie ON Rating.mID = Movie.mID WHERE Movie.year < 1980 GROUP BY Rating.mID);
+
+
+
+//SQL Movie-Rating Query Exercises Extras
+
+Q1
+Find the names of all reviewers who rated Gone with the Wind.
+
+SELECT DISTINCT Reviewer.name FROM Rating
+JOIN Reviewer
+ON Rating.rID = Reviewer.rID
+JOIN Movie
+ON Movie.mID = Rating.mID
+WHERE Movie.title LIKE "Gone with the Wind";
+
+
+Q2
+For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars. 
+
+SELECT Reviewer.name, Movie.title, Rating.stars FROM Rating
+JOIN Movie
+ON Movie.mID = Rating.mID
+JOIN Reviewer
+ON Rating.rID = Reviewer.rID
+WHERE Reviewer.name LIKE Movie.director;
+
+
+Q3
+Return all reviewer names and movie names together in a single list, alphabetized. (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing "The".) 
+
+SELECT DISTINCT Reviewer.name FROM Reviewer
+UNION
+SELECT DISTINCT Movie.title FROM Movie
+ORDER BY Reviewer.name, Movie.title;
+
+
+
+
+//SQL Social-Network Query Exercises
+
+
+Q1
+Find the names of all students who are friends with someone named Gabriel. 
+
+SELECT name FROM (SELECT ID FROM Highschooler WHERE name ='Gabriel' GROUP BY ID) AS gabriels
+JOIN Friend
+ON gabriels.ID = ID1
+JOIN Highschooler
+ON ID2 = Highschooler.ID;
+
+SELECT DISTINCT name FROM Highschooler
+WHERE ID
+IN (SELECT ID1 FROM Friend
+WHERE ID2
+IN (SELECT ID FROM Highschooler
+WHERE name = 'Gabriel'));
+
+SELECT h1.name FROM Highschooler h1
+JOIN Friend
+ON h1.ID = Friend.ID1
+JOIN Highschooler h2
+ON Friend.ID2 = h2.ID
+WHERE h2.name = 'Gabriel';
+
+
+
+Q2
+For every student who likes someone 2 or more grades younger than themselves, return that student's name and grade, and the name and grade of the student they like. 
+
+SELECT Likers.name, Likers. grade, Highschooler.name, Highschooler.grade FROM (Highschooler
+JOIN Likes
+ON Highschooler.ID = Likes.ID1) AS Likers
+JOIN Highschooler
+ON Likers.ID2 = Highschooler.ID
+WHERE ABS(Likers.grade - Highschooler.grade) >= 2;
+
+SELECT h1.name, h1.grade, h2.name, h2.grade FROM Highschooler h1
+JOIN Likes
+ON h1.ID = ID1
+JOIN Highschooler h2
+ON ID2 = h2.ID
+WHERE ABS(h1.grade - h2.grade) >= 2;
+
+
+
+Q3
+For every pair of students who both like each other, return the name and grade of both students. Include each pair only once, with the two names in alphabetical order.
+
+SELECT h1.name, h1.grade, h2.name, h2.grade FROM Highschooler h1
+JOIN Likes l1
+ON h1.ID = l1.ID1
+JOIN Highschooler h2
+ON l1.ID2 = h2.ID
+JOIN Likes l2
+ON h2.ID = l2.ID1
+WHERE l1.ID1 = l2.ID2 AND l1.ID2 =l2.ID1 AND h1.name < h2.name;
