@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validemail</title>
+</head>
+<body>
+<form action="/useful/validemail" method="post">
+    <input type="text" name="email" placeholder="example@example.com"/>
+    <input type="submit" value="Validate Email"/>
+</form>
+<p th:unless="${email} == null" th:text="${validemail} ? ${email} + ' is a valid email address' : ${email} + ' is not a valid email address'" th:style="${validemail} ? 'color: green' : 'color: red'"></p>
+</body>
+</html>

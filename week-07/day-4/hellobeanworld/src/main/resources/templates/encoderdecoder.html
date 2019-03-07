@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encoderdecoder</title>
+</head>
+<body>
+<form action="/useful/encoderdecoder" method="post">
+    <input type="text" name="text"/>
+    <input type="number" name="number"/>
+    <input type="submit" value="Encode"/>
+</form>
+<p th:text="${encoded}"></p>
+<form action="/useful/encoderdecoder" method="post">
+    <input type="text" name="text"/>
+    <input type="number" name="number"/>
+    <input type="submit" value="Decode"/>
+</form>
+<p th:text="${decoded}"></p>
+</body>
+</html>
