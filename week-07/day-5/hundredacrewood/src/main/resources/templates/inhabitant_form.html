@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/inhabitants/add}" method="post" th:object="${newinhabitant}">
+    <label th:text="ID"></label>
+    <input type="text" name="id" th:field="*{id}" disabled>
+    <label th:text="Name"></label>
+    <input type="text" name="name" th:field="*{name}" required>
+    <label th:text="Age"></label>
+    <input type="number" name="age" th:field="*{age}" required>
+    <ul>
+        <li th:each="radiovalue : ${genders}">
+            <input type="radio" th:value="${radiovalue}" th:field="*{gender}">
+            <label th:for="${#ids.prev('gender')}" th:text="${radiovalue}"></label>
+        </li>
+    </ul>
+    <input type="submit" value="ADD">
+</form>
+</body>
+</html>

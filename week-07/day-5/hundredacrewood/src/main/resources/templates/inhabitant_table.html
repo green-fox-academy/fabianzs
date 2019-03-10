@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inhabitant Table</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/hundredacrestyle.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+    </tr>
+    <tr th:each="inhabitant : ${inhabitants}">
+        <td th:text="${inhabitant.id}"></td>
+        <td><a th:href="'/inhabitants/'+ ${inhabitant.id}" th:text="${inhabitant.name}"></a></td>
+        <td><a th:href="@{'/inhabitants/' + ${inhabitant.id}}" th:text="${inhabitant.age}"></a></td>
+        <td th:text="${inhabitant.gender}"></td>
+    </tr>
+</table>
+</body>
+</html>
