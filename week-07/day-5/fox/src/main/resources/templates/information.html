@@ -30,7 +30,7 @@
     <div th:if="${fox} != null">
         <p th:if="${fox.getListOfTricks().size()} == 0" th:text="'No actions have been performed, yet.'"></p>
         <ul>
-            <li th:if="${fox.getListOfActions().size()} != 0" th:each="action,i : ${fox.getListOfActions()}" th:text="${action}" th:unless="${i.index > 4}"></li>
+            <li th:if="${fox.getListOfActions().size()} != 0" th:each="action,i : ${fox.getListOfActions()}" th:text="${action}" th:unless="${i.index < (fox.getListOfActions().size() - 5)}"></li>
         </ul>
     </div>
 </body>
