@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface GFService {
 
-    List<String> findAll();
+    List<String> getNames();
 
     void save(String student);
 

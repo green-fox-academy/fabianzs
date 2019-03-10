@@ -10,7 +10,7 @@
     <input type="text" name="name">
     <input type="submit" hidden>
 </form>
-<p th:unless="${name} == null" th:text="${contains} ? ${name} + ' is already in the list' : ${name} + ' is not in the list' "></p>
+<p th:unless="${name} == null" th:text="${contains} ? ${name} + ' is already in the list' : ${name} + ' is not in the list'"></p>
 <a href="/gfa">Main</a>
 </body>
 </html>

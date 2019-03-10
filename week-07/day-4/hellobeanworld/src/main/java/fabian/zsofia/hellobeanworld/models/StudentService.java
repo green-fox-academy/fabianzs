@@ -18,7 +18,7 @@ public class StudentService implements GFService {
         names.add("John");
     }
 
-    public List<String> findAll() {
+    public List<String> getNames() {
         return names;
     }
 

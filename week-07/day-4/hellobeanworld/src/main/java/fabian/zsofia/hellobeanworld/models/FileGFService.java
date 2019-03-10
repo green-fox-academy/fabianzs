@@ -20,7 +20,7 @@ public class FileGFService implements GFService {
     }
 
     @Override
-    public List<String> findAll() {
+    public List<String> getNames() {
         try {
             List<String> names = Files.readAllLines(this.filePath);
             return names;

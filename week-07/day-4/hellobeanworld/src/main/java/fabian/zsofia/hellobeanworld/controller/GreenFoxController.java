@@ -1,7 +1,6 @@
 package fabian.zsofia.hellobeanworld.controller;
 
 import fabian.zsofia.hellobeanworld.models.GFService;
-import fabian.zsofia.hellobeanworld.models.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ public class GreenFoxController {
     GFService studentService;
 
     @Autowired
-    public GreenFoxController( @Qualifier("file") GFService studentService) {
+    public GreenFoxController(@Qualifier("file") GFService studentService) {
         this.studentService = studentService;
     }
 
@@ -28,7 +27,7 @@ public class GreenFoxController {
 
     @RequestMapping(value = "/gfa/list", method = RequestMethod.GET)
     public String showList(Model model) {
-        model.addAttribute("students", studentService.findAll());
+        model.addAttribute("students", studentService.getNames());
         return "gftemplates/list";
     }
 
@@ -50,8 +49,7 @@ public class GreenFoxController {
 
     @RequestMapping(value = "/gfa/check", method = RequestMethod.POST)
     public String existStudent(Model model, @ModelAttribute("name") String name) {
-        model.addAttribute("contains", studentService.findAll().contains(name));
+        model.addAttribute("contains", studentService.getNames().contains(name));
         return "gftemplates/check";
     }
-
 }
