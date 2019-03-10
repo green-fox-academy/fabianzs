@@ -8,16 +8,23 @@
 <body>
 <h1>Welcome to Programmer Fox Club!</h1>
 <p>Please provide a name, so you can associate it to your pet!</p>
+<p> </p>
 <form action="#" th:action="@{/login}" method="post">
     <label>Name</label>
     <input type="text" name="name">
     <input type="submit" value="GO">
 </form>
-<!--<p>Please provide a name, so you can create a new fox!</p>
+<div th:if="${name}">
+    <p th:if="!${foxlist.existFox(name)}" style="color: darkred">You have provided a name that has not been used before, add it as a new one!</p>
+</div>
+<p>Please provide a name, so you can create a new fox!</p>
 <form action="#" th:action="@{/register}" method="post">
     <label>Name</label>
-    <input type="text" name="name">
-    <input type="submit" value="CREATE">-->
+    <input type="text" name="fox">
+    <input type="submit" value="ADOPT">
 </form>
+<div th:if="${fox}">
+    <p th:if="${foxlist.existFox(fox)}" style="color: darkred" th:text="'There is already a pet with the name ' +${fox} + ', please select a new one!'"></p>
+</div>
 </body>
 </html>

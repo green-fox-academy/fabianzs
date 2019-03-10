@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information page</title>
+</head>
+<body>
+<ul>
+    <li><a th:href="'/information?name=' + ${name}">Information</a></li>
+    <li><a th:href="'/nutritionStore?name=' + ${name}">Nutrition Store</a></li>
+    <li><a th:href="'/trickCenter?name=' + ${name}">Trick Center</a></li>
+    <li><a th:href="'/actionHistory?name=' + ${name}">Action History</a></li>
+</ul>
+    <p> </p>
+    <img src="greenfox.png" alt="Fox" id="png">
+    <p th:text="${fox} != null ? 'This is ' + ${fox.getName()} + '. Currently living on ' + ${fox.getFood()} + ' and ' + ${fox.getDrink()} + '. He knows ' + ${fox.getListOfTricks().size()} + ' tricks.' : 'This is Mr. Fox. Currently living on pizza and lemonade. He knows 2 tricks.'"></p>
+    <h1>Known tricks</h1>
+    <ul th:if="${fox} == null">
+        <li>write HTML</li>
+        <li>code in Java</li>
+    </ul>
+    <div th:if="${fox} != null">
+        <p th:if="${fox.getListOfTricks().size()} == 0" th:text="'You know no tricks, yet. Go ahead and learn some.'"></p>
+        <ul>
+            <li th:if="${fox.getListOfTricks().size()} != 0" th:each="trick : ${fox.getListOfTricks()}" th:text="${trick}"></li>
+        </ul>
+    </div>
+    <h1>Action history</h1>
+    <div th:if="${fox} != null">
+        <p th:if="${fox.getListOfTricks().size()} == 0" th:text="'No actions have been performed, yet.'"></p>
+        <ul>
+            <li th:if="${fox.getListOfActions().size()} != 0" th:each="action,i : ${fox.getListOfActions()}" th:text="${action}" th:unless="${i.index > 4}"></li>
+        </ul>
+    </div>
+</body>
+</html>

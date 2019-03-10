@@ -3,18 +3,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Programmer Fox Club</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Welcome to Programmer Fox Club!</h1>
-<p th:text="'You have successfully visited your pet: ' + (${fox} != null ? ${fox.getName()} : 'Mr. Fox')"></p>
-<p> </p>
 <ul>
     <li><a th:href="'/information?name=' + ${name}">Information</a></li>
     <li><a th:href="'/nutritionStore?name=' + ${name}">Nutrition Store</a></li>
     <li><a th:href="'/trickCenter?name=' + ${name}">Trick Center</a></li>
     <li><a th:href="'/actionHistory?name=' + ${name}">Action History</a></li>
 </ul>
-<img src="greenfox.png" alt="Fox" id="png">
+<div th:if="${fox} != null">
+    <p th:if="${fox.getListOfActions().size()} == 0" th:text="'No actions have been performed, yet.'"></p>
+    <ul>
+        <li th:if="${fox.getListOfTricks().size()} != 0" th:each="action : ${fox.getListOfActions()}" th:text="${action}"></li>
+    </ul>
+</div>
+
 </body>
 </html>
