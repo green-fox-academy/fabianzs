@@ -16,7 +16,8 @@ public class BankAccount {
     }
 
     public BankAccount() {
-
+        this.isKing=true;
+        this.isGood=true;
     }
 
     public String getName() {
