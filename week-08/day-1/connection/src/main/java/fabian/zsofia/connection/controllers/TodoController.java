@@ -41,7 +41,7 @@ public class TodoController {
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
-    public String showAdd(Model model) {
+    public String showAddForm(Model model) {
         model.addAttribute("newtodo", new Todo());
         return "todolist_add";
     }
@@ -55,6 +55,23 @@ public class TodoController {
     @RequestMapping(path = "/{id}/delete")
     public String delete(@PathVariable long id) {
         todoRepository.deleteById(id);
+        return "redirect:/todo/";
+    }
+
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.GET)
+    public String showEditForm(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("todo", todoRepository.findById(id).get());
+        return "todolist_edit";
+    }
+
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
+    public String edit(@PathVariable Long id, @ModelAttribute Todo todo) {
+        Todo todotoupdate = todoRepository.findById(id).get();
+        todotoupdate.setTitle(todo.getTitle());
+        todotoupdate.setDone(todo.isDone());
+        todotoupdate.setUrgent(todo.isUrgent());
+        todoRepository.save(todotoupdate);
         return "redirect:/todo/";
     }
 }
