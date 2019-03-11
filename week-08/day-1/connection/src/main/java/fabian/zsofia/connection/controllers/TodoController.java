@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,18 +26,23 @@ public class TodoController {
     @RequestMapping(path = {"/", "/list"})
     public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive) {
         List<Todo> todos = new ArrayList<>();
+        List<Todo> orderedTodos = new ArrayList<>();
         if (isActive != null && isActive.equals("true")) {
             List<Todo> temp = new ArrayList<>();
             todoRepository.findAll()
                     .forEach(temp::add);
-            todos = temp.stream()
+            orderedTodos = temp.stream()
                     .filter(todo -> !todo.isDone())
+                    .sorted(Comparator.comparing(Todo::getId))
                     .collect(Collectors.toList());
         } else {
             todoRepository.findAll()
                     .forEach(todos::add);
+            orderedTodos = todos.stream()
+                    .sorted(Comparator.comparing(Todo::getId))
+                    .collect(Collectors.toList());
         }
-        model.addAttribute("todos", todos);
+        model.addAttribute("todos", orderedTodos);
         return "todolist";
     }
 
@@ -66,12 +72,8 @@ public class TodoController {
     }
 
     @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
-    public String edit(@PathVariable Long id, @ModelAttribute Todo todo) {
-        Todo todotoupdate = todoRepository.findById(id).get();
-        todotoupdate.setTitle(todo.getTitle());
-        todotoupdate.setDone(todo.isDone());
-        todotoupdate.setUrgent(todo.isUrgent());
-        todoRepository.save(todotoupdate);
+    public String edit(@PathVariable long id, @ModelAttribute Todo todo) {
+        todoRepository.save(todo);
         return "redirect:/todo/";
     }
 }

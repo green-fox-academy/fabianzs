@@ -19,7 +19,7 @@ public class ConnectionApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-  /*      todoRepository.save(new Todo("Start the day"));
+ /*       todoRepository.save(new Todo("Start the day"));
         todoRepository.save(new Todo("Finish H2 workshop1"));
         todoRepository.save(new Todo("Don't fuck up", true, false));
         todoRepository.save(new Todo("I have to learn Object Relational Mapping"));
