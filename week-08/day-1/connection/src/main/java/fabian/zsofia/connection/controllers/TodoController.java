@@ -53,7 +53,7 @@ public class TodoController {
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute Todo newtodo) {
+    public String add(Todo newtodo) {
         todoRepository.save(newtodo);
         return "redirect:/todo/";
     }
@@ -75,5 +75,12 @@ public class TodoController {
     public String edit(@PathVariable long id, @ModelAttribute Todo todo) {
         todoRepository.save(todo);
         return "redirect:/todo/";
+    }
+
+    @RequestMapping(path = "/{id}/details", method = RequestMethod.GET)
+    public String showDetails(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("todo", todoRepository.findById(id).get());
+        return "todolist_todo";
     }
 }

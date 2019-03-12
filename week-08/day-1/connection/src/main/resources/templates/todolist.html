@@ -15,14 +15,16 @@
         <th>ACTION</th>
         <th>URGENT</th>
         <th>DONE</th>
+        <th>DATE</th>
         <th>DELETE</th>
         <th>EDIT</th>
     </tr>
     <tr th:each="todo : ${todos}">
         <td th:text="${todo.id}"></td>
-        <td th:text="${todo.title}"></td>
+        <td><a th:href="@{'/todo/' + ${todo.id} + '/details'}" th:text="${todo.title}"></a></td>
         <td th:text="${todo.urgent}"></td>
         <td th:text="${todo.done}"></td>
+        <td th:text="${todo.dateOfCreation}"></td>
         <td><a th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
         <td><a th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
     </tr>
