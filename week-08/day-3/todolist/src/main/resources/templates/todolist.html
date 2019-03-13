@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <!--<link rel="stylesheet" type="text/css" href="/todostyle.css">-->
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container">
+<h1 class="font-weight-bold text-center text-uppercase text-dark"><a style="color: black; text-decoration: none" href="/todo/">Todos for today</a></h1>
+<div class="col-lg-12" style="margin-bottom: 30px">
+    <div class="col-lg-5"></div>
+    <div>
+        <a class="col-lg-2 btn btn-warning text-center" href="/todo/add">Add new todo</a>
+    </div>
+    <div class="col-lg-5"></div>
+</div>
+<div class="col-lg-12" style="margin-bottom: 30px">
+    <p class="text-uppercase" style="font-weight: bold; text">Search for:</p>
+    <form id="searchbar" method="post" action="/todo/search">
+        <input type="text" name="search" placeholder="...type keyword">
+        <button id="search" type="submit">search</button>
+    </form>
+</div>
+<table class="table table-hover table-striped">
+    <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">ACTION</th>
+        <th class="text-center">URGENT</th>
+        <th class="text-center">DONE</th>
+        <th class="text-center">DATE</th>
+        <th class="text-center">DELETE</th>
+        <th class="text-center">EDIT</th>
+    </tr>
+    <tr th:each="todo : ${todos}">
+        <td class="col-lg-1 text-center" th:text="${todo.id}"></td>
+        <td class="col-lg-5 alert alert-warning text-primary"><a th:href="@{'/todo/' + ${todo.id} + '/details'}" th:text="${todo.title}"></a></td>
+        <td class="col-lg-1" th:text="${todo.urgent}"></td>
+        <td class="col-lg-2" th:text="${todo.done}"></td>
+        <td class="col-lg-2" th:text="${todo.dateOfCreation}"></td>
+        <td class="col-lg-1" ><a th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
+        <td class="col-lg-1" ><a th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
+    </tr>
+</table>
+<!--<ul>
+    <li th:each="todo : ${todos}" th:text="${todo.title}"></li>
+</ul>-->
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>

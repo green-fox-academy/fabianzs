@@ -1,0 +1,19 @@
+table {
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: gray;
+    border: white solid 3px;
+    color: white;
+    font-size: 18px;
+    height: 60px;
+    width: 150px;
+}
+
+td {
+    text-align: left;
+    padding-left: 30px;
+    line-height: 30px;
+}
