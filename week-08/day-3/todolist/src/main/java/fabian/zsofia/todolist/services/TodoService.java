@@ -3,6 +3,8 @@ package fabian.zsofia.todolist.services;
 import fabian.zsofia.todolist.models.Todo;
 import fabian.zsofia.todolist.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TodoService {
+public class    TodoService {
 
     @Autowired
     TodoRepository todoRepository;
@@ -44,6 +46,9 @@ public class TodoService {
                 .sorted(Comparator.comparing(Todo::getId))
                 .collect(Collectors.toList());
     }
+
+    /*@Query(value="SELECT todo FROM TODO todo WHERE LOWER(todo.title) LIKE ('*' + :search + '*')")
+    public List<Todo> getSearchedTodosByQuery(@Param("search") String searh);*/
 
     public Todo getTodo(long id) {
         return todoRepository.findById(id).get();

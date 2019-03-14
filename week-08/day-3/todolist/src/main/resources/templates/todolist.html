@@ -39,11 +39,13 @@
         <td class="col-lg-4 alert alert-warning text-primary"><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/details'}" th:text="${todo.title}"></a></td>
         <td class="col-lg-1" th:if="${todo.assignee != null}"><a style="color: black; text-decoration: none" th:href="@{'/assignee/' +  ${todo.assignee.id} + '/details'}" th:text="${todo.assignee.name}"></a></td>
         <td class="col-lg-1" th:if="${todo.assignee == null}"> </td>
-        <td class="col-lg-1" th:text="${todo.urgent}"></td>
-        <td class="col-lg-1" th:text="${todo.done}"></td>
+        <td class="col-lg-1 text-center" th:if="${todo.urgent}"><span class="glyphicon glyphicon-ok"></span></td>
+        <td class="col-lg-1 text-center" th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
+        <td class="col-lg-1 text-center" th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
+        <td class="col-lg-1 text-center" th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
         <td class="col-lg-2" th:text="${todo.dateOfCreation}"></td>
-        <td class="col-lg-1 text-center"><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/delete'}"><span class="glyphicon glyphicon-remove"></span></a> </td>
-        <td class="col-lg-1 text-center" ><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/edit'}"><span class="glyphicon glyphicon-ok"></span></a> </td>
+        <td class="col-lg-1 text-center"><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
+        <td class="col-lg-1 text-center" ><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
     </tr>
 </table>
 <!--<ul>
