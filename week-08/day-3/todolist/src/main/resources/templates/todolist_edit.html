@@ -19,6 +19,14 @@
     <div>
         <label>Done</label>
         <input type="checkbox" name="done" th:field="*{done}">
+    </div>
+    <div>
+        <label>Assignee</label>
+        <select name="assigneeid">
+            <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}"></option>
+        </select>
+    </div>
+    <div>
         <input type="submit" value="Submit">
         <a th:href="'/todo/'">Cancel</a>
     </div>

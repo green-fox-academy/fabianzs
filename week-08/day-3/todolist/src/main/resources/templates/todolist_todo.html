@@ -11,6 +11,7 @@
     <li th:text="${todo.title}"></li>
     <li th:text="${todo.urgent} ? 'Urgent' : 'Not urgent'"></li>
     <li th:text="${todo.done} ? 'Task is done' : 'Task has not been done'"></li>
+    <li th:text="${todo.assignee}"></li>
 </ul>
 <a href="/todo/">Back</a>
 </body>
