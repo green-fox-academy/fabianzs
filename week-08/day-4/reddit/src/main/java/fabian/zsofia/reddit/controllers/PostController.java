@@ -5,6 +5,7 @@ import fabian.zsofia.reddit.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,6 +33,18 @@ public class PostController {
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public String addPost(Post new_post) {
         postService.addPost(new_post);
+        return "redirect:/reddit/";
+    }
+
+    @RequestMapping(path = "/{id}/voteup", method = RequestMethod.GET)
+    public String voteUp(@PathVariable long id) {
+        postService.voteUp(id);
+        return "redirect:/reddit/";
+    }
+
+    @RequestMapping(path = "/{id}/votedown", method = RequestMethod.GET)
+    public String voteDown(@PathVariable long id) {
+        postService.voteDown(id);
         return "redirect:/reddit/";
     }
 }

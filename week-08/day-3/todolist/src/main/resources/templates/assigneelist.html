@@ -7,7 +7,7 @@
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body class="container">
-<h1 class="font-weight-bold text-center text-uppercase text-dark"><a style="color: black; text-decoration: none" href="/todo/">Assignees</a></h1>
+<h1 class="font-weight-bold text-center text-uppercase text-dark"><a style="color: black; text-decoration: none" href="/assignee/">Assignees</a></h1>
 <div class="col-lg-12" style="margin-bottom: 30px">
     <div class="col-lg-5"></div>
     <div>
@@ -27,8 +27,8 @@
         <td class="col-lg-1 text-center" th:text="${assignee.id}"></td>
         <td class="col-lg-4 alert alert-warning text-center"><a style="color: black; text-decoration: none" th:href="@{'/assignee/' + ${assignee.id} + '/details'}" th:text="${assignee.name}"></a></td>
         <td class="col-lg-5" th:text="${assignee.email}"></td>
-        <td class="col-lg-1 text-center"><a style="color: black; text-decoration: none" th:href="@{'/assignee/' + ${assignee.id} + '/delete'}">delete</a></td>
-        <td class="col-lg-1 text-center" ><a style="color: black; text-decoration: none" th:href="@{'/assignee/' + ${assignee.id} + '/edit'}">edit</a></td>
+        <td class="col-lg-1 text-center"><a class="btn btn-danger text-center" th:href="@{'/assignee/' + ${assignee.id} + '/delete'}">delete</a></td>
+        <td class="col-lg-1 text-center" ><a class="btn btn-info text-center" th:href="@{'/assignee/' + ${assignee.id} + '/edit'}">edit</a></td>
     </tr>
 </table>
 <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>

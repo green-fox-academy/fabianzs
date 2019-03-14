@@ -44,8 +44,8 @@
         <td class="col-lg-1 text-center" th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
         <td class="col-lg-1 text-center" th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
         <td class="col-lg-2" th:text="${todo.dateOfCreation}"></td>
-        <td class="col-lg-1 text-center"><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
-        <td class="col-lg-1 text-center" ><a style="color: black; text-decoration: none" th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
+        <td class="col-lg-1"><a class="btn btn-danger text-center" th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
+        <td class="col-lg-1 text-center" ><a class="btn btn-info text-center" th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
     </tr>
 </table>
 <!--<ul>

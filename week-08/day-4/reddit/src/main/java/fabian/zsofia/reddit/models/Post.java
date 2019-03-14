@@ -2,6 +2,8 @@ package fabian.zsofia.reddit.models;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "reddit_post")
@@ -12,16 +14,13 @@ public class Post {
     long id;
     String title;
     String url;
-    long voting;
+    long score;
+    private String dateOfCreation;
+
 
     public Post() {
-        this.voting = 0;
-    }
-
-    public Post(String title, String url) {
-        this.title = title;
-        this.url = url;
-        this.voting = 0;
+        this.score = 0;
+        this.dateOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM. dd."));
     }
 
     public String getTitle() {
@@ -40,12 +39,12 @@ public class Post {
         this.url = url;
     }
 
-    public long getVoting() {
-        return voting;
+    public long getScore() {
+        return score;
     }
 
-    public void setVoting(long voting) {
-        this.voting = voting;
+    public void setScore(long score) {
+        this.score = score;
     }
 
     public long getId() {
