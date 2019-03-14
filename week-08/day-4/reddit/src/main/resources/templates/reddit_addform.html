@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add form</title>
+</head>
+<body>
+<form method="post" action="/reddit/add" th:object="${new_post}">
+    <label for="title">Title:</label>
+    <input id="title" type="text" th:field="*{title}">
+    <label for="url">URL:</label>
+    <input id="url" type="url" th:field="*{url}">
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
