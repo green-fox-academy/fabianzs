@@ -21,7 +21,7 @@ public class PostService {
         postRepository.findAll()
                 .forEach(posts::add);
         return posts.stream()
-                .sorted(Comparator.comparing(Post::getId))
+                .sorted(Comparator.comparing(Post::getScore).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -31,5 +31,23 @@ public class PostService {
 
     public void addPost(Post post) {
         postRepository.save(post);
+    }
+
+    public void voteUp(long id) {
+            long voting = getPost(id).getScore();
+            Post post = getPost(id);
+            post.setScore(++voting);
+            postRepository.save(post);
+    }
+
+    public void voteDown(long id) {
+        long voting = getPost(id).getScore();
+        Post post = getPost(id);
+        post.setScore(--voting);
+        postRepository.save(post);
+    }
+
+    public List<Post> getBest10Posts(long start) {
+        return postRepository.getBest10Posts((start - 1) * 10);
     }
 }

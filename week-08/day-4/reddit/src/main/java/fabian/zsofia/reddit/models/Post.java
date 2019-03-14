@@ -50,4 +50,8 @@ public class Post {
     public long getId() {
         return id;
     }
+
+    public String getDateOfCreation() {
+        return dateOfCreation;
+    }
 }

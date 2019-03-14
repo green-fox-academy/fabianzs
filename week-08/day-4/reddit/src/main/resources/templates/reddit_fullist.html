@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container">
+<h1>Trending posts</h1>
+<a class="col-lg-2 btn btn-warning text-center" href="/reddit/full/add">Submit new post</a>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>Voting</th>
+        <th>Up</th>
+        <th>Down</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.score}"></td>
+        <td><a th:href="@{'/reddit/' + ${post.id} + '/voteup'}">+</a></td>
+        <td><a th:href="@{'/reddit/' + ${post.id} + '/votedown'}">-</a></td>
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.dateOfCreation}"></td>
+    </tr>
+</table>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>
