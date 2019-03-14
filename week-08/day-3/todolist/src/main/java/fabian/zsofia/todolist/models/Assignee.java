@@ -9,9 +9,9 @@ public class Assignee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String name;
-    String email;
+    private long id;
+    private String name;
+    private String email;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "assignee")
     private List<Todo> todos;
 
