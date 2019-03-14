@@ -1,6 +1,7 @@
 package fabian.zsofia.todolist.controllers;
 
 import fabian.zsofia.todolist.models.Todo;
+import fabian.zsofia.todolist.services.AssigneeService;
 import fabian.zsofia.todolist.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +14,17 @@ import java.util.List;
 @RequestMapping(path = "/todo")
 public class TodoController {
 
-
+    private AssigneeService assigneeService;
     private TodoService todoService;
 
     @Autowired
-    public TodoController(TodoService todoService) {
+    public TodoController(AssigneeService assigneeService, TodoService todoService) {
+        this.assigneeService = assigneeService;
         this.todoService = todoService;
     }
 
     @RequestMapping(path = {"/", "/list"})
-    public String list(Model model, @RequestParam(name = "isActive", required = false) String isActive) {
+    public String listTodos(Model model, @RequestParam(name = "isActive", required = false) String isActive) {
         List<Todo> todos = todoService.getAllTodos();
         if (isActive != null && isActive.equals("true")) {
             todos = todoService.getActiveTodos();
@@ -39,7 +41,7 @@ public class TodoController {
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
     public String showAddForm(Model model) {
-        model.addAttribute("newtodo", new Todo());
+        model.addAttribute("new_todo", new Todo());
         return "todolist_add";
     }
 
@@ -59,11 +61,13 @@ public class TodoController {
     public String showEditForm(Model model, @PathVariable long id) {
         model.addAttribute("id", id);
         model.addAttribute("todo", todoService.getTodo(id));
+        model.addAttribute("assignees", assigneeService.getAllAssignees());
         return "todolist_edit";
     }
 
     @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
-    public String edit(@PathVariable long id, @ModelAttribute Todo todo) {
+    public String edit(@PathVariable long id, Todo todo, long assigneeid) {
+        todo.setAssignee(assigneeService.getAssignee(assigneeid));
         todoService.editTodo(id, todo);
         return "redirect:/todo/";
     }

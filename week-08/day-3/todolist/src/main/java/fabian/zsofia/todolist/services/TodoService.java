@@ -3,13 +3,14 @@ package fabian.zsofia.todolist.services;
 import fabian.zsofia.todolist.models.Todo;
 import fabian.zsofia.todolist.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
+@Service
 public class TodoService {
 
     @Autowired

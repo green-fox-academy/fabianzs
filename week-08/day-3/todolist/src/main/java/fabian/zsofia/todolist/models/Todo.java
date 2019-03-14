@@ -15,6 +15,8 @@ public class Todo {
     private boolean urgent;
     private boolean done;
     private String dateOfCreation;
+    @ManyToOne (cascade = CascadeType.ALL)
+    private Assignee assignee;
 
     public Todo() {
         this.urgent = false;
@@ -72,4 +74,12 @@ public class Todo {
         return dateOfCreation;
     }
 
+    public Assignee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Assignee assignee) {
+        this.assignee = assignee;
+        assignee.addTodo(this);
+    }
 }

@@ -1,6 +1,8 @@
 package fabian.zsofia.todolist;
 
+import fabian.zsofia.todolist.models.Assignee;
 import fabian.zsofia.todolist.models.Todo;
+import fabian.zsofia.todolist.repositories.AssigneeRepository;
 import fabian.zsofia.todolist.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +14,8 @@ public class TodolistApplication implements CommandLineRunner {
 
     @Autowired
     private TodoRepository todoRepository;
+    @Autowired
+    private AssigneeRepository assigneeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(TodolistApplication.class, args);
@@ -24,6 +28,11 @@ public class TodolistApplication implements CommandLineRunner {
         todoRepository.save(new Todo("Don't fuck up", true, false));
         todoRepository.save(new Todo("I have to learn Object Relational Mapping"));
         todoRepository.save(new Todo("Lose your mind", false, true));
-        todoRepository.save(new Todo("Watch videos", true, false));*/
+        todoRepository.save(new Todo("Watch videos", true, false));
+
+        assigneeRepository.save(new Assignee("Riel", "riel@gmail.com"));
+*/
+
+
     }
 }
