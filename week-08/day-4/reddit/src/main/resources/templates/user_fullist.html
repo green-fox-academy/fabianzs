@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="container">
+<h1>Users</h1>
+<a class="col-lg-2 btn btn-warning text-center" href="/reddit/user/add">Add new user</a>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <!--<td><a th:href="@{'/reddit/' + ${post.id} + '/voteup'}">+</a></td>
+        <td><a th:href="@{'/reddit/' + ${post.id} + '/votedown'}">-</a></td>-->
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.age}"></td>
+    </tr>
+</table>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+</body>
+</html>
