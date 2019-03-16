@@ -7,12 +7,18 @@
 </head>
 <body>
 <form method="post" action="/reddit/user/add" th:object="${new_user}">
-    <label for="title">Name:</label>
-    <input id="title" type="text" th:field="*{name}">
+    <label for="username">Username:</label>
+    <input id="username" type="text" th:field="*{username}" required>
+    <label for="name">Name:</label>
+    <input id="name" type="text" th:field="*{name}">
     <label for="email">E-Mail:</label>
-    <input id="email" type="email" th:field="*{email}">
+    <input id="email" type="email" th:field="*{email}" required>
     <label for="age">Age:</label>
     <input id="age" type="number" th:field="*{age}">
+    <label for="password">Password:</label>
+    <input id="password" type="password" th:field="*{password}" required>
+    <!--<label for="confirm_password">password:</label>
+    <input id="confirm_password" type="password">-->
     <input type="submit" value="Submit">
 </form>
 </body>

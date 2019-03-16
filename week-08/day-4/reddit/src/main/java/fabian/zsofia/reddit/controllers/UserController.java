@@ -1,8 +1,6 @@
 package fabian.zsofia.reddit.controllers;
 
-import fabian.zsofia.reddit.models.Post;
 import fabian.zsofia.reddit.models.User;
-import fabian.zsofia.reddit.repositories.UserRepository;
 import fabian.zsofia.reddit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,5 +34,4 @@ public class UserController {
         userService.addUser(new_user);
         return "redirect:/reddit/user/";
     }
-
 }

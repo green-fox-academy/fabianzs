@@ -26,11 +26,25 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public User getUser(long id) {
+    public User getUserById(long id) {
         return userRepository.findById(id).get();
     }
 
     public void addUser(User user) {
         userRepository.save(user);
+    }
+
+    public long validateUser(String username, String password) {
+        if (userRepository.findByUsername(username) == null) {
+            return -1;
+        } else if (userRepository.findByUsername(username) != null && userRepository.validateUser(username, password) == null) {
+            return 0;
+        } else {
+            return userRepository.validateUser(username, password).getId();
+        }
+    }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

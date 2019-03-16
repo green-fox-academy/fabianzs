@@ -8,20 +8,18 @@
 </head>
 <body class="container">
 <h1>Users</h1>
-<a class="col-lg-2 btn btn-warning text-center" href="/reddit/user/add">Add new user</a>
 <table class="table table-hover table-striped">
     <tr>
+        <th>Userame</th>
         <th>Name</th>
         <th>E-mail</th>
         <th>Age</th>
     </tr>
     <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <!--<td><a th:href="@{'/reddit/' + ${post.id} + '/voteup'}">+</a></td>
-        <td><a th:href="@{'/reddit/' + ${post.id} + '/votedown'}">-</a></td>-->
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.age}"></td>
+        <td class="col-lg-2 alert alert-warning text-primary" th:text="${user.username}"></td>
+        <td class="col-lg-4" th:text="${user.name}"></td>
+        <td class="col-lg-5" th:text="${user.email}"></td>
+        <td class="col-lg-1" th:text="${user.age}"></td>
     </tr>
 </table>
 <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>

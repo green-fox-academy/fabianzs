@@ -34,20 +34,24 @@ public class PostService {
     }
 
     public void voteUp(long id) {
-            long voting = getPost(id).getScore();
+            long score = getPost(id).getScore();
             Post post = getPost(id);
-            post.setScore(++voting);
+            post.setScore(++score);
             postRepository.save(post);
     }
 
     public void voteDown(long id) {
-        long voting = getPost(id).getScore();
+        long score = getPost(id).getScore();
         Post post = getPost(id);
-        post.setScore(--voting);
+        post.setScore(--score);
         postRepository.save(post);
     }
 
     public List<Post> getBest10Posts(long start) {
         return postRepository.getBest10Posts((start - 1) * 10);
+    }
+
+    public int getNumberOfPosts() {
+        return postRepository.getNumberOfPosts();
     }
 }

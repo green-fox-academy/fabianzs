@@ -2,6 +2,7 @@ package fabian.zsofia.reddit.controllers;
 
 import fabian.zsofia.reddit.models.Post;
 import fabian.zsofia.reddit.services.PostService;
+import fabian.zsofia.reddit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,41 +14,51 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
-@RequestMapping("/reddit")
+@RequestMapping("/reddit/{username}/post")
 public class PostController {
 
-    @Autowired
     PostService postService;
+    UserService userService;
 
+    @Autowired
+    public PostController(PostService postService, UserService userService) {
+        this.postService = postService;
+        this.userService = userService;
+    }
 
     @RequestMapping("/full")
-    public String listPosts(Model model) {
+    public String listPosts(Model model, @PathVariable String username) {
+        model.addAttribute("username", username);
         model.addAttribute("posts", postService.getAllPosts());
-        return "reddit_fullist";
+        return "post_fullist";
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String redirect() {
-        return "redirect:/reddit/1";
+    public String redirect(@PathVariable String username) {
+        return "redirect:/reddit/" + username + "/post/1";
     }
 
     @RequestMapping(path = "/{page}", method = RequestMethod.GET)
-    public String listLimitedPosts(Model model, @PathVariable long page) {
+    public String listLimitedPosts(Model model, @PathVariable String username, @PathVariable long page) {
+        model.addAttribute("username", username);
         model.addAttribute("page", page);
         model.addAttribute("posts", postService.getBest10Posts(page));
-        return "reddit_limitedlist";
+        model.addAttribute("total", postService.getNumberOfPosts());
+        return "post_limitedlist";
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
-    public String getAddPostForm(Model model) {
+    public String getAddPostForm(Model model, @PathVariable String username) {
+        model.addAttribute("username", username);
         model.addAttribute("new_post", new Post());
-        return "reddit_addform";
+        return "post_addform";
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String addPost(Post new_post, HttpServletRequest request) {
+    public String addPost(Post new_post, @PathVariable String username, HttpServletRequest request) {
+        new_post.setUser(userService.getUserByUsername(username));
         postService.addPost(new_post);
-        return "redirect:" + request.getHeader("Referer");
+        return "redirect:/reddit/" + username + "/post/";
     }
 
     @RequestMapping(path = "/{id}/voteup", method = RequestMethod.GET)
@@ -61,5 +72,4 @@ public class PostController {
         postService.voteDown(id);
         return "redirect:" + request.getHeader("Referer");
     }
-
 }

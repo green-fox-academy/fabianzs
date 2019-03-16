@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add form</title>
+    <title>Post add form</title>
 </head>
 <body>
-<form method="post" action="/reddit/add" th:object="${new_post}">
+<form method="post" th:action="@{'/reddit/' + ${username} +'/post/add'}" th:object="${new_post}">
     <label for="title">Title:</label>
     <input id="title" type="text" th:field="*{title}">
     <label for="url">URL:</label>
