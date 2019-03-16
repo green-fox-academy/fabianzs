@@ -15,7 +15,7 @@ public class Todo {
     private boolean urgent;
     private boolean done;
     private String dateOfCreation;
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     private Assignee assignee;
 
     public Todo() {

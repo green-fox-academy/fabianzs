@@ -45,8 +45,6 @@ public class    TodoService {
                 .collect(Collectors.toList());
     }
 
-
-
     public Todo getTodo(long id) {
         return todoRepository.findById(id).get();
     }

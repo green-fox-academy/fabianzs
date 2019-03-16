@@ -9,7 +9,7 @@
 <h1>Add new assignee</h1>
 <form action="#" th:action="@{/assignee/add}" method="post" th:object="${new_assignee}">
     <div>
-        <label for="name">Title</label>
+        <label for="name">Name</label>
         <input type="text" id="name" th:field="*{name}">
     </div>
     <div>
@@ -17,8 +17,6 @@
         <input type="email" id="email" th:field="*{email}">
     </div>
     <input type="submit" value="Add">
-</form>
-    </div>
 </form>
 </body>
 </html>

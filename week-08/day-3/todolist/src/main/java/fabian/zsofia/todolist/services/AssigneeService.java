@@ -1,12 +1,15 @@
 package fabian.zsofia.todolist.services;
 
 import fabian.zsofia.todolist.models.Assignee;
+import fabian.zsofia.todolist.models.Todo;
 import fabian.zsofia.todolist.repositories.AssigneeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AssigneeService {
@@ -18,7 +21,9 @@ public class AssigneeService {
         List<Assignee> assignees = new ArrayList<>();
         assigneeRepository.findAll()
                 .forEach(assignees::add);
-        return assignees;
+        return assignees.stream()
+                .sorted(Comparator.comparing(Assignee::getId))
+                .collect(Collectors.toList());
     }
 
     public Assignee getAssignee (long id) {
