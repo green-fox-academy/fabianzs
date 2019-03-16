@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Post add form</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="container">
+<h1>Submit new post</h1>
 <form method="post" th:action="@{'/reddit/' + ${username} +'/post/add'}" th:object="${new_post}">
-    <label for="title">Title:</label>
-    <input id="title" type="text" th:field="*{title}">
-    <label for="url">URL:</label>
-    <input id="url" type="url" th:field="*{url}">
-    <input type="submit" value="Submit">
+    <label style="display: block" for="title">Title:</label>
+    <input style="display: block" id="title" type="text" th:field="*{title}" required>
+    <label style="display: block" for="url">URL:</label>
+    <input style="display: block; margin-bottom: 10px" id="url" type="url" th:field="*{url}" required>
+    <input class="col-lg-1 btn btn-warning text-center" type="submit" value="Submit">
 </form>
 </body>
 </html>
