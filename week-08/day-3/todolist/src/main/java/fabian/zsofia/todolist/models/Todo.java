@@ -2,8 +2,6 @@ package fabian.zsofia.todolist.models;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -34,11 +32,12 @@ public class Todo {
         this.dateOfCreation = new SimpleDateFormat("yyyy. MMMM dd.").format(new Date());
     }
 
-    public Todo(String title, boolean urgent, boolean done) {
+    public Todo(String title, boolean urgent, boolean done, String dateOfCreation, String dueDate) {
         this.title = title;
         this.urgent = urgent;
         this.done = done;
-        this.dateOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM. dd."));
+        this.dateOfCreation = dateOfCreation;
+        this.dueDate = dueDate;
     }
 
     public long getId() {
