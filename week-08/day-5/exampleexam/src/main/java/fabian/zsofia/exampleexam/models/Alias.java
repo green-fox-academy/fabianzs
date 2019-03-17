@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Entity
 public class Alias {

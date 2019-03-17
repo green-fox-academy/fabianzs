@@ -4,15 +4,10 @@ import fabian.zsofia.exampleexam.models.Alias;
 import fabian.zsofia.exampleexam.services.AliasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.http.HTTPException;
-
 
 @Controller
 public class AliasController {
