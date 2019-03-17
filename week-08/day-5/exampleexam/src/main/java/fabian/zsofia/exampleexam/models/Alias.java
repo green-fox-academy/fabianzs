@@ -16,11 +16,11 @@ public class Alias {
     private String url;
     private String alias;
     private AtomicLong hitCount;
-    private int secretCode;
+    private String  secretCode;
 
     public Alias() {
-        this.hitCount = new AtomicLong();
-        this.secretCode = new Random().nextInt(1);
+        this.hitCount = new AtomicLong(0);
+        this.secretCode= String.format("%04d", new Random().nextInt(10000));
     }
 
     public String getUrl() {
@@ -47,11 +47,8 @@ public class Alias {
         this.hitCount = hitCount;
     }
 
-    public int getSecretCode() {
+    public String getSecretCode() {
         return secretCode;
     }
 
-    public void setSecretCode(int secretCode) {
-        this.secretCode = secretCode;
-    }
 }

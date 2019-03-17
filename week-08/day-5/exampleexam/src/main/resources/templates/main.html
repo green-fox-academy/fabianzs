@@ -6,7 +6,10 @@
     <title>Main Page</title>
 </head>
 <body>
-<p></p>
+<div th:unless="${first_load} ">
+    <p th:unless="${exist}" th:text="|Your URL is aliased to ${new_alias.alias} and your secret code is ${new_alias.secretCode}|"></p>
+    <p style="color: red" th:if="${exist}" th:text="Your alias is already in use!"></p>
+</div>
 <form action="/save-link" method="post" th:object="${new_alias}">
     <div>
         <label for="url">URL</label>
