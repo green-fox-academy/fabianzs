@@ -19,6 +19,10 @@ public class AliasService {
         aliasRepository.save(alias);
     }
 
+    public void updateAlias(long id, Alias alias) {
+        aliasRepository.save(alias);
+    }
+
     public Alias findAliasByUrlAlias(String urlAlias) {
         return aliasRepository.findAliasByUrlAlias(urlAlias);
     }

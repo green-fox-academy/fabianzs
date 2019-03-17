@@ -9,7 +9,7 @@
 <div th:if="${exist} != null">
     <p th:style="${exist} ? 'color: red' : 'color: black'" th:text="${exist} ? 'Your alias is already in use.' : 'Your URL is aliased to ' + ${alias.urlAlias} + ' and your secret code is ' + ${alias.secretCode} + '.'"></p>
 </div>
-<form action="/save-link" method="post" th:object=" ${new_alias}">
+<form action="/save-link" method="post" th:object="${new_alias}">
     <div>
         <label for="url">URL</label>
         <input type="url" id="url" th:field="*{url}" required>

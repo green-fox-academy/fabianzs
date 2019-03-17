@@ -15,19 +15,23 @@ public class Alias {
     private long id;
     private String url;
     private String urlAlias;
-    private AtomicLong hitCount;
-    private String  secretCode;
+    private long hitCount;
+    private String secretCode;
 
     public Alias(String urlAlias, String url) {
         this.urlAlias = urlAlias;
         this.url = url;
-        this.hitCount = new AtomicLong(0);
-        this.secretCode= String.format("%04d", new Random().nextInt(10000));
+        this.hitCount = 0;
+        this.secretCode = String.format("%04d", new Random().nextInt(10000));
     }
 
     public Alias() {
-        this.hitCount = new AtomicLong(0);
+        this.hitCount = 0;
         this.secretCode= String.format("%04d", new Random().nextInt(10000));
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getUrl() {
@@ -46,12 +50,12 @@ public class Alias {
         this.urlAlias = urlAlias;
     }
 
-    public AtomicLong getHitCount() {
+    public long getHitCount() {
         return hitCount;
     }
 
-    public void setHitCount(AtomicLong hitCount) {
-        this.hitCount = hitCount;
+    public void incrementHitCount() {
+        this.hitCount = ++hitCount;
     }
 
     public String getSecretCode() {
