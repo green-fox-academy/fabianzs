@@ -5,12 +5,8 @@ import fabian.zsofia.exampleexam.services.AliasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 public class AliasController {
@@ -23,23 +19,27 @@ public class AliasController {
     }
 
     @RequestMapping("/")
-    public String getMainPage(Model model) {
-        model.addAttribute("new_alias", new Alias());
-        if (!model.asMap().containsKey("exist")) {
-            model.addAttribute("first_load", true);
-            model.addAttribute("exist", false);
-        } else {
-            model.addAttribute("first_load", false);
-        }
+    public String getMainPage(Model model, @RequestParam(name = "exist", required = false) boolean exist, @RequestParam(name ="url_alias", required = false) String urlAlias, @RequestParam(name="url", required = false) String url) {
+            if (urlAlias != null && exist) {
+                model.addAttribute("exist", true);
+                model.addAttribute("new_alias", new Alias(urlAlias, url));
+            } else if (urlAlias != null && !exist) {
+                model.addAttribute("exist", false);
+                model.addAttribute("alias", aliasService.findAliasByUrlAlias(urlAlias));
+                model.addAttribute("new_alias", new Alias());
+            } else {
+                model.addAttribute("new_alias", new Alias());
+            }
         return "main";
     }
 
     @RequestMapping(path = "/save-link", method = RequestMethod.POST)
-    public ModelAndView getMainPage(ModelMap model, @ModelAttribute("new_alias") Alias alias) {
-        if (!aliasService.containsAlias(alias.getAlias())) {
+    public String addAlias(Alias alias) {
+        if (!aliasService.containsAlias(alias.getUrlAlias())) {
             aliasService.addAlias(alias);
+            return "redirect:/?exist=false&url_alias=" + alias.getUrlAlias() + "&url=" + alias.getUrl();
+        } else {
+            return "redirect:/?exist=true&url_alias=" + alias.getUrlAlias() + "&url=" + alias.getUrl();
         }
-        model.addAttribute("exist", aliasService.containsAlias(alias.getAlias()));
-        return new ModelAndView("redirect:/", model);
     }
 }

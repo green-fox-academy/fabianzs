@@ -14,9 +14,16 @@ public class Alias {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String url;
-    private String alias;
+    private String urlAlias;
     private AtomicLong hitCount;
     private String  secretCode;
+
+    public Alias(String urlAlias, String url) {
+        this.urlAlias = urlAlias;
+        this.url = url;
+        this.hitCount = new AtomicLong(0);
+        this.secretCode= String.format("%04d", new Random().nextInt(10000));
+    }
 
     public Alias() {
         this.hitCount = new AtomicLong(0);
@@ -31,12 +38,12 @@ public class Alias {
         this.url = url;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getUrlAlias() {
+        return urlAlias;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setUrlAlias(String urlAlias) {
+        this.urlAlias = urlAlias;
     }
 
     public AtomicLong getHitCount() {
