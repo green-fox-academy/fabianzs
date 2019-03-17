@@ -16,8 +16,10 @@
     <input type="radio" value="false" name="urgent" th:field="*{urgent}">
     <label>Done</label>
     <input type="checkbox" name="done" th:field="*{done}">-->
+    <input type="text" id="date" th:field="*{dueDate}" placeholder="2019. június 12.">
     <div>
         <input type="submit" value="Submit">
+        <a th:href="'/todo/'">Cancel</a>
     </div>
 </form>
 </body>

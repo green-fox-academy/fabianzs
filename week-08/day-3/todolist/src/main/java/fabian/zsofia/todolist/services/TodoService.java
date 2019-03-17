@@ -35,10 +35,19 @@ public class    TodoService {
                 .collect(Collectors.toList());
     }
 
-    public List<Todo> getSearchedTodos(String search) {
+    /*public List<Todo> getSearchedTodos(String search) {
         List<Todo> todos = new ArrayList<>();
         todoRepository.findAll()
                 .forEach(todos::add);
+        return todos.stream()
+                .filter(todo -> todo.getTitle().toLowerCase().contains(search.toLowerCase()))
+                .sorted(Comparator.comparing(Todo::getId))
+                .collect(Collectors.toList());
+    }*/
+
+    public List<Todo> getSearchedTodos(String search) {
+        List<Todo> todos = todoRepository.getSearchedTodos(search);
+
         return todos.stream()
                 .filter(todo -> todo.getTitle().toLowerCase().contains(search.toLowerCase()))
                 .sorted(Comparator.comparing(Todo::getId))

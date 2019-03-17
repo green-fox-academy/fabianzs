@@ -1,6 +1,7 @@
 package fabian.zsofia.todolist.controllers;
 
 import fabian.zsofia.todolist.models.Assignee;
+import fabian.zsofia.todolist.models.Todo;
 import fabian.zsofia.todolist.services.AssigneeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/assignee")
@@ -35,8 +38,12 @@ public class AssigneeController {
         return "redirect:/assignee/";
     }
 
-    @RequestMapping(path = "/{id}/delete")
+    @RequestMapping(path = "/{id}/delete", method = RequestMethod.DELETE)
     public String delete(@PathVariable long id) {
+        List<Todo> todos = assigneeService.getAssignee(id).getTodos();
+        for (Todo todo : todos) {
+            todo.removeAssignee();
+        }
         assigneeService.deleteAssignee(id);
         return "redirect:/assignee/";
     }
@@ -48,7 +55,7 @@ public class AssigneeController {
         return "assigneelist_edit";
     }
 
-    @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.PUT)
     public String edit(@PathVariable long id, @ModelAttribute Assignee assignee) {
         assigneeService.editAssignee(id, assignee);
         return "redirect:/assignee/";

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    /*@Query(value="SELECT todo FROM TODO todo WHERE LOWER(todo.title) LIKE ('*' + :search + '*')")
-    public List<Todo> getSearchedTodosByQuery(@Param("search") String searh);*/
+    @Query(value="SELECT * FROM TODO todo WHERE LOWER(todo.title) LIKE %:search% OR LOWER(todo.due_date) LIKE %:search% OR LOWER(todo.date_of_creation) LIKE %:search%" , nativeQuery = true)
+    public List<Todo> getSearchedTodos(@Param("search") String search);
 }

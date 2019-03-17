@@ -1,8 +1,10 @@
 package fabian.zsofia.todolist.models;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Entity
 @Table(name = "todo")
@@ -15,20 +17,21 @@ public class Todo {
     private boolean urgent;
     private boolean done;
     private String dateOfCreation;
+    private String dueDate;
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     private Assignee assignee;
 
     public Todo() {
         this.urgent = false;
         this.done = false;
-        this.dateOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM. dd."));
+        this.dateOfCreation = new SimpleDateFormat("yyyy. MMMM dd.").format(new Date());
     }
 
     public Todo(String title) {
         this.title = title;
         this.urgent = false;
         this.done = false;
-        this.dateOfCreation = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy. MMMM. dd."));
+        this.dateOfCreation = new SimpleDateFormat("yyyy. MMMM dd.").format(new Date());
     }
 
     public Todo(String title, boolean urgent, boolean done) {
@@ -74,6 +77,14 @@ public class Todo {
         return dateOfCreation;
     }
 
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public Assignee getAssignee() {
         return assignee;
     }
@@ -81,5 +92,9 @@ public class Todo {
     public void setAssignee(Assignee assignee) {
         this.assignee = assignee;
         assignee.addTodo(this);
+    }
+
+    public void removeAssignee() {
+        this.assignee = null;
     }
 }

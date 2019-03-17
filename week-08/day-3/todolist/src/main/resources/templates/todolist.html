@@ -30,7 +30,8 @@
         <th class="text-center">ASSIGNEE</th>
         <th class="text-center">URGENT</th>
         <th class="text-center">DONE</th>
-        <th class="text-center">DATE</th>
+        <th class="text-center">DATE OF CREATION</th>
+        <th class="text-center">DUE DATE</th>
         <th class="text-center">DELETE</th>
         <th class="text-center">EDIT</th>
     </tr>
@@ -43,8 +44,13 @@
         <td class="col-lg-1 text-center" th:unless="${todo.urgent}"><span class="glyphicon glyphicon-remove"></span></td>
         <td class="col-lg-1 text-center" th:if="${todo.done}"><span class="glyphicon glyphicon-ok"></span></td>
         <td class="col-lg-1 text-center" th:unless="${todo.done}"><span class="glyphicon glyphicon-remove"></span></td>
-        <td class="col-lg-2" th:text="${todo.dateOfCreation}"></td>
-        <td class="col-lg-1"><a class="btn btn-danger text-center" th:href="@{'/todo/' + ${todo.id} + '/delete'}">delete</a> </td>
+        <td class="col-lg-1" th:text="${todo.dateOfCreation}"></td>
+        <td class="col-lg-1" th:text="${todo.dueDate}"></td>
+        <td class="col-lg-1">
+            <form action="#" th:action="@{|/todo/${todo.id}/delete|}" th:method="delete">
+                <input class="btn btn-danger text-center" type="submit" value="delete">
+            </form>
+        </td>
         <td class="col-lg-1 text-center" ><a class="btn btn-info text-center" th:href="@{'/todo/' + ${todo.id} + '/edit'}">edit</a> </td>
     </tr>
 </table>

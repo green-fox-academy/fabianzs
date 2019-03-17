@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Edit todo</h1>
-<form action="#" th:action="@{'/todo/' + ${id} + '/edit'}" method="post" th:object="${todo}">
+<form action="#" th:action="@{|/todo/${id}/edit|}" th:method="put" th:object="${todo}">
     <div>
         <label for="title">Todo description</label>
         <input type="text" id="title" th:field="*{title}">
@@ -21,9 +21,20 @@
         <input type="checkbox" name="done" th:field="*{done}">
     </div>
     <div>
+        <label for="date">Due date</label>
+        <input type="text" id="date" th:field="*{dueDate}" placeholder="2019. június 12.">
+    </div>
+    <div>
         <label>Assignee</label>
         <select name="assigneeid">
-            <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}"></option>
+            <option value="0" th:selected="${todo.assignee} == null ? 'selected' : ''">-</option>
+            <div th:if="${todo.assignee} != null">
+                <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}" th:selected="${todo.assignee.name == assignee.name}"></option>
+            </div>
+            <div th:if="${todo.assignee} == null">
+                <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}"></option>
+            </div>
+
         </select>
     </div>
     <div>

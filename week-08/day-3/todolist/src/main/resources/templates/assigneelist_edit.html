@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Edit assignee</h1>
-<form action="#" th:action="@{'/assignee/' + ${id} + '/edit'}" method="post" th:object="${assignee}">
+<form action="#" th:action="@{|/assignee/${id}/edit|}" th:method="put" th:object="${assignee}">
     <div>
         <label for="name">Name</label>
         <input type="text" id="name" th:field="*{name}">

@@ -36,6 +36,7 @@ public class TodoController {
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(Model model, String search) {
         model.addAttribute("todos", todoService.getSearchedTodos(search));
+
         return "todolist";
     }
 
@@ -51,7 +52,7 @@ public class TodoController {
         return "redirect:/todo/";
     }
 
-    @RequestMapping(path = "/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(path = "/{id}/delete", method = RequestMethod.DELETE)
     public String delete(@PathVariable long id) {
         todoService.deleteTodo(id);
         return "redirect:/todo/";
@@ -65,9 +66,11 @@ public class TodoController {
         return "todolist_edit";
     }
 
-    @RequestMapping(path = "/{id}/edit", method = RequestMethod.POST)
+    @RequestMapping(path = "/{id}/edit", method = RequestMethod.PUT)
     public String edit(@PathVariable long id, Todo todo, long assigneeid) {
-        todo.setAssignee(assigneeService.getAssignee(assigneeid));
+        if (assigneeid != 0) {
+            todo.setAssignee(assigneeService.getAssignee(assigneeid));
+        }
         todoService.editTodo(id, todo);
         return "redirect:/todo/";
     }

@@ -30,8 +30,9 @@ public class TodolistApplication implements CommandLineRunner {
         todoRepository.save(new Todo("Lose your mind", false, true));
         todoRepository.save(new Todo("Watch videos", true, false));
 
-        assigneeRepository.save(new Assignee("Riel", "riel@gmail.com"));
-*/
+        assigneeRepository.save(new Assignee("Zsófi", "fabian.zsofia.eszter@gmail.com"));
+        assigneeRepository.save(new Assignee("Szabi", "osziszab@gmail.com"));
+        assigneeRepository.save(new Assignee("Jani", "johnlackland@gmail.com"));*/
 
 
     }
