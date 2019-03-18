@@ -1,21 +1,34 @@
 package fabian.zsofia.frontend.controllers;
 
-import fabian.zsofia.frontend.models.Doubling;
-import fabian.zsofia.frontend.models.ErrorMessage;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import fabian.zsofia.frontend.models.*;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestControllers {
 
     @RequestMapping(path = "/doubling",  method = RequestMethod.GET)
-    public Object getDouble(@RequestParam(name = "input", required = false) Integer received) {
+    public Object getDoubling(@RequestParam(name = "input", required = false) Integer received) {
         if (received != null) {
             return new Doubling(received);
         } else {
-            return new ErrorMessage();
+            return new DoublingError();
         }
     }
+
+    @RequestMapping(path = "/greeter",  method = RequestMethod.GET)
+    public Object getGreeter(@RequestParam(name = "name", required = false) String name, @RequestParam(name = "title", required = false) String title) {
+        GreeterError greeterError = new GreeterError();
+        if (name == null && title == null) {
+            return greeterError;
+        } else if (name == null && title != null) {
+            greeterError.setNameError();
+            return greeterError;
+        } else if (name != null && title == null) {
+            greeterError.setTitleError();
+            return greeterError;
+        } else {
+            return new Greeter(name, title);
+        }
+    }
+
 }
