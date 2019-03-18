@@ -3,6 +3,8 @@ package fabian.zsofia.frontend.controllers;
 import fabian.zsofia.frontend.models.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 public class RestControllers {
 
@@ -35,5 +37,25 @@ public class RestControllers {
     public Object getAppenda(@PathVariable String appendable) {
         return new AppendA(appendable);
     }
+
+    @RequestMapping(path = "/dountil/{action}", method = RequestMethod.POST)
+    public Object getDoUntil(@PathVariable String action, @RequestBody(required = false) Until until) {
+        if (until != null) {
+            return new DoUntil(action, until);
+        } else {
+            return new DoUntilError();
+        }
+    }
+
+    /*@RequestMapping(path = "/dountil/{action}", method = RequestMethod.POST)
+    public Object getDoUntil(@PathVariable String action, @RequestBody(required = false)  Map<String, Integer> until) {
+        if (until != null) {
+            return new DoUntil(action, until);
+        } else {
+            return new DoUntilError();
+        }
+    }*/
+
+
 
 }
