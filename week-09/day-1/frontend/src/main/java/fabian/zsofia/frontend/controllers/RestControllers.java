@@ -31,4 +31,9 @@ public class RestControllers {
         }
     }
 
+    @RequestMapping(path = "/appenda/{appendable}", method = RequestMethod.GET)
+    public Object getAppenda(@PathVariable String appendable) {
+        return new AppendA(appendable);
+    }
+
 }
