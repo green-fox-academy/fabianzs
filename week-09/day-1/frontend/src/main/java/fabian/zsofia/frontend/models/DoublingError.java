@@ -1,10 +1,10 @@
 package fabian.zsofia.frontend.models;
 
-public class ErrorMessage {
+public class DoublingError {
 
     private String error;
 
-    public ErrorMessage() {
+    public DoublingError() {
         this.error = "Please provide an input!";
     }
 
