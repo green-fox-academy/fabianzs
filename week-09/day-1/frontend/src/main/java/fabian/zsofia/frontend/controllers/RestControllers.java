@@ -39,7 +39,7 @@ public class RestControllers {
     }
 
     @RequestMapping(path = "/dountil/{action}", method = RequestMethod.POST)
-    public Object getDoUntil(@PathVariable String action, @RequestBody(required = false) Until until) {
+    public Object postDoUntil(@PathVariable String action, @RequestBody(required = false) Until until) {
         if (until != null) {
             return new DoUntil(action, until);
         } else {
@@ -48,14 +48,12 @@ public class RestControllers {
     }
 
     /*@RequestMapping(path = "/dountil/{action}", method = RequestMethod.POST)
-    public Object getDoUntil(@PathVariable String action, @RequestBody(required = false)  Map<String, Integer> until) {
+    public Object postDoUntil(@PathVariable String action, @RequestBody(required = false)  Map<String, Integer> until) {
         if (until != null) {
             return new DoUntil(action, until);
         } else {
             return new DoUntilError();
         }
     }*/
-
-
-
+    
 }
