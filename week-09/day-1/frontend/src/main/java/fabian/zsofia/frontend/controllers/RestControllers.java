@@ -55,5 +55,14 @@ public class RestControllers {
             return new DoUntilError();
         }
     }*/
-    
+
+    @RequestMapping(path = "/array", method = RequestMethod.POST)
+    public Object postArrays (@RequestBody(required = false) ArrayHandlerJson arrayHandlerJson) {
+        System.out.println(arrayHandlerJson);
+        if (arrayHandlerJson != null && arrayHandlerJson.getWhat() != null && arrayHandlerJson.getNumbers() != null) {
+            return new ArrayHandler(arrayHandlerJson.getWhat(), arrayHandlerJson.getNumbers());
+        } else {
+            return new ArrayHandlerError();
+        }
+    }
 }
