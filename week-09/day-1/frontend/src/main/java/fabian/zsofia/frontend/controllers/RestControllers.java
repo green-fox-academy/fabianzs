@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -87,8 +88,12 @@ public class RestControllers {
     }
 
     @RequestMapping(path = "/log", method = RequestMethod.GET)
-    public LogList getLogs() {
+    public Object getLogs() {
         return new LogList(logService.getLogs());
+        /*Map<String, Object> logs = new HashMap<>();
+        logs.put("entries:", logService.getLogs());
+        logs.put("entry_count:", logService.getLogs().size());
+        return logs;*/
     }
 
     @RequestMapping(path = "/sith", method = RequestMethod.POST)

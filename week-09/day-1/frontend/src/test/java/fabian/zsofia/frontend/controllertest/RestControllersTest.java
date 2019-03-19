@@ -178,14 +178,17 @@ public class RestControllersTest {
         when(logService.getLogs())
                 .thenReturn(new ArrayList<>(Arrays.asList(
                         new Log("/appenda/problem","appendable=problem"),
-                        new Log("/doubling", "input=15"))));
+                        new Log("/doubling", "input=15"),
+                        new Log("/dountil/factor", "action=factor&{\"until\":10}"))));
 
         mockMvc.perform(
                 get("/log"))
-                .andExpect(jsonPath("$.entry_count", is(2)))
+                .andExpect(jsonPath("$.entry_count", is(3)))
                 .andExpect(jsonPath("$.entries.[1].createdAt", is(new SimpleDateFormat("yyyy. MM dd. hh:mm:ss").format(new Date()))))
                 .andExpect(jsonPath("$.entries.[1].endpoint", is("/doubling")))
                 .andExpect(jsonPath("$.entries.[1].data", is("input=15")))
+                .andExpect(jsonPath("$.entries.[2].endpoint", is("/dountil/factor")))
+                .andExpect(jsonPath("$.entries.[2].data", is("action=factor&{\"until\":10}")))
                 .andExpect(status().isOk());
     }
 }
