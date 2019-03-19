@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -132,7 +134,7 @@ public class RestControllersTest {
 
     @Test
     public void dountil_PathvarFactorBodyMissing_ReturnsError() throws Exception {
-        mockMvc.perform(post("/dountil/sum"))
+        mockMvc.perform(post("/dountil/factor"))
                 .andExpect(jsonPath("$.error", is("Please provide a number!")));
     }
 
@@ -142,7 +144,28 @@ public class RestControllersTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void arrays_SumBodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/arrays")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"what\": \"sum\", \"numbers\": [1,2,5,10]}"))
+                .andExpect(jsonPath("$.result", is(18)));
+    }
 
+    @Test
+    public void arrays_MultiplyBodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/arrays")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"what\": \"multiply\", \"numbers\": [1,2,5,10]}"))
+                .andExpect(jsonPath("$.result", is(100)));
+    }
 
-
+    @Test
+    public void arrays_DoubleBodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/arrays")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"what\": \"double\", \"numbers\": [1,2,5,10]}"))
+                .andExpect(jsonPath("$.result", is(Arrays.asList(2,4,10,20))));
+    }
+    
 }
