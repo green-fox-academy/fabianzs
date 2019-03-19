@@ -90,4 +90,9 @@ public class RestControllers {
     public LogList getLogs() {
         return new LogList(logService.getLogs());
     }
+
+    @RequestMapping(path = "/sith", method = RequestMethod.POST)
+    public Object modifyTextByReverserOfTheSith(@RequestBody SithReverserText sithReverserText) {
+        return new SithReverserSithText(sithReverserText);
+    }
 }
