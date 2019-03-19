@@ -1,6 +1,7 @@
 package fabian.zsofia.frontend.controllertest;
 
 import fabian.zsofia.frontend.controllers.RestControllers;
+import fabian.zsofia.frontend.models.Log;
 import fabian.zsofia.frontend.service.LogService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +13,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -167,5 +172,20 @@ public class RestControllersTest {
                 .content("{\"what\": \"double\", \"numbers\": [1,2,5,10]}"))
                 .andExpect(jsonPath("$.result", is(Arrays.asList(2,4,10,20))));
     }
-    
+
+    @Test
+    public void getLogs_ReturnAllLogs_IsOK() throws Exception {
+        when(logService.getLogs())
+                .thenReturn(new ArrayList<>(Arrays.asList(
+                        new Log("/appenda/problem","appendable=problem"),
+                        new Log("/doubling", "input=15"))));
+
+        mockMvc.perform(
+                get("/log"))
+                .andExpect(jsonPath("$.entry_count", is(2)))
+                .andExpect(jsonPath("$.entries.[1].createdAt", is(new SimpleDateFormat("yyyy. MM dd. hh:mm:ss").format(new Date()))))
+                .andExpect(jsonPath("$.entries.[1].endpoint", is("/doubling")))
+                .andExpect(jsonPath("$.entries.[1].data", is("input=15")))
+                .andExpect(status().isOk());
+    }
 }
