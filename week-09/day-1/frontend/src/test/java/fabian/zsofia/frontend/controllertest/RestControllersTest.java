@@ -91,5 +91,58 @@ public class RestControllersTest {
         mockMvc.perform(get("/appenda"))
                 .andExpect(status().isNotFound());
     }
-    
+
+    @Test
+    public void dountil_PathvarSum1BodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/dountil/sum")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"until\": 5}"))
+                .andExpect(jsonPath("$.result", is(15)));
+    }
+
+    @Test
+    public void dountil_PathvarSum2BodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/dountil/sum")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"until\": 25}"))
+                .andExpect(jsonPath("$.result", is(325)));
+    }
+
+    @Test
+    public void dountil_PathvarFactor1BodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/dountil/sum")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"until\": 5}"))
+                .andExpect(jsonPath("$.result", is(15)));
+    }
+
+    @Test
+    public void dountil_PathvarFactor2BodyExist_ReturnsResult() throws Exception {
+        mockMvc.perform(post("/dountil/factor")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"until\": 9}"))
+                .andExpect(jsonPath("$.result", is(362880)));
+    }
+
+    @Test
+    public void dountil_PathvarSumBodyMissing_ReturnsError() throws Exception {
+        mockMvc.perform(post("/dountil/sum"))
+                .andExpect(jsonPath("$.error", is("Please provide a number!")));
+    }
+
+    @Test
+    public void dountil_PathvarFactorBodyMissing_ReturnsError() throws Exception {
+        mockMvc.perform(post("/dountil/sum"))
+                .andExpect(jsonPath("$.error", is("Please provide a number!")));
+    }
+
+    @Test
+    public void dountil_PathvarMissing_Returns404() throws Exception {
+        mockMvc.perform(post("/dountil"))
+                .andExpect(status().isNotFound());
+    }
+
+
+
+
 }
