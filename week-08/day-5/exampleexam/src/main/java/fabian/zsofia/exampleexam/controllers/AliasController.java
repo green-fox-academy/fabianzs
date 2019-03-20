@@ -4,10 +4,13 @@ import fabian.zsofia.exampleexam.models.Alias;
 import fabian.zsofia.exampleexam.services.AliasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Map;
 
 @Controller
 public class AliasController {
@@ -44,15 +47,35 @@ public class AliasController {
         }
     }
 
-    @RequestMapping("/a/{alias}")
-    public String findAlias(@PathVariable String alias) {
+    @RequestMapping(path = "/a/{alias}", method = RequestMethod.GET)
+    public Object findAlias(@PathVariable String alias) {
         if (aliasService.containsAlias(alias)) {
             Alias foundAlias = aliasService.findAliasByUrlAlias(alias);
             foundAlias.incrementHitCount();
             aliasService.updateAlias(foundAlias.getId(), foundAlias);
             return "redirect:" + foundAlias.getUrl();
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            /*throw new ResponseStatusException(HttpStatus.NOT_FOUND);*/
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(path = "/api/links", method = RequestMethod.GET)
+    @ResponseBody
+    public Object showLinks() {
+        return aliasService.findAll();
+    }
+
+    @RequestMapping(path = "/api/links/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Object deleteLink(@RequestBody(required = false) Map<String, String> secretCode, @PathVariable long id) {
+        if (secretCode == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        } else if (secretCode != null && aliasService.findAliasBySecretCode(secretCode.get("secretCode")) == null) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        } else {
+            aliasService.deleteAlias(secretCode.get("secretCode"), id);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
 }
