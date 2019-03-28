@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="container">
 <h1 th:text="'Task#' + ${todo.id} + ' Details'"></h1>
 <ul th:style="${todo.done} ? 'color: grey' : 'color: black'">
-    <li th:text="${todo.title}"></li>
+    <li><h2 th:text="${todo.title}"></h2></li>
     <li th:text="${todo.urgent} ? 'Urgent' : 'Not urgent'"></li>
     <li th:text="${todo.done} ? 'Task is done' : 'Task has not been done'"></li>
-    <li th:text="${todo.assignee}"></li>
+    <li th:text="${todo.assignee.name}"></li>
 </ul>
-<a href="/todo/">Back</a>
+<a class="col-lg-1 btn btn-warning" style="background-color: gray; border-color: gray; text-decoration: none; color: white" href="/todo/">Back</a>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

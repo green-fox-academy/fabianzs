@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignee</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body>
+<body class="container">
 <h1 th:text="'Todos for ' + ${assignee.name}"></h1>
 <ul>
     <li th:each="todo : ${todos}" th:text="${todo.title}"></li>
 </ul>
-<a href="/assignee/">Back</a>
+<a class="col-lg-1 btn btn-warning" style="background-color: gray; border-color: gray; text-decoration: none; color: white" href="/assignee/">Back</a>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

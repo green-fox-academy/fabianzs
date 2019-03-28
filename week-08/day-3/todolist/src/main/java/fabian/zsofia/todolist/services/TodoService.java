@@ -47,11 +47,6 @@ public class    TodoService {
 
     public List<Todo> getSearchedTodos(String search) {
         return todoRepository.getSearchedTodos(search);
-
-        /*return todos.stream()
-                .filter(todo -> todo.getTitle().toLowerCase().contains(search.toLowerCase()))
-                .sorted(Comparator.comparing(Todo::getId))
-                .collect(Collectors.toList());*/
     }
 
     public Todo getTodo(long id) {

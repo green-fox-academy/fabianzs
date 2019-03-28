@@ -22,14 +22,14 @@ public class Todo {
     public Todo() {
         this.urgent = false;
         this.done = false;
-        this.dateOfCreation = new SimpleDateFormat("yyyy. MMMM dd.").format(new Date());
+        this.dateOfCreation = new SimpleDateFormat("yyyy. MM. dd.").format(new Date());
     }
 
     public Todo(String title) {
         this.title = title;
         this.urgent = false;
         this.done = false;
-        this.dateOfCreation = new SimpleDateFormat("yyyy. MMMM dd.").format(new Date());
+        this.dateOfCreation = new SimpleDateFormat("yyyy. MM. dd.").format(new Date());
     }
 
     public Todo(String title, boolean urgent, boolean done, String dateOfCreation, String dueDate) {

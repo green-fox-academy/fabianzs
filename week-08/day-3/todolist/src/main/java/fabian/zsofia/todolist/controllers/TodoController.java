@@ -36,18 +36,21 @@ public class TodoController {
     @RequestMapping(path = "/search", method = RequestMethod.POST)
     public String search(Model model, String search) {
         model.addAttribute("todos", todoService.getSearchedTodos(search));
-
         return "todolist";
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
     public String showAddForm(Model model) {
         model.addAttribute("new_todo", new Todo());
+        model.addAttribute("assignees", assigneeService.getAllAssignees());
         return "todolist_add";
     }
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String add(Todo newtodo) {
+    public String add(Todo newtodo, long assigneeid) {
+        if (assigneeid != 0) {
+            newtodo.setAssignee(assigneeService.getAssignee(assigneeid));
+        }
         todoService.addTodo(newtodo);
         return "redirect:/todo/";
     }

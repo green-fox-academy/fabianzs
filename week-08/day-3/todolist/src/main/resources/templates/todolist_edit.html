@@ -4,28 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit form</title>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
-<body>
-<h1>Edit todo</h1>
+<body class="container">
+<h1 class="font-weight-bold text-uppercase">Edit todo</h1>
 <form action="#" th:action="@{|/todo/${id}/edit|}" th:method="put" th:object="${todo}">
-    <div>
-        <label for="title">Todo description</label>
-        <input type="text" id="title" th:field="*{title}">
+    <div class="col-lg-12">
+        <label class="col-lg-2" for="title">Todo description</label>
+        <input class="col-lg-3" type="text" id="title" th:field="*{title}">
     </div>
-    <div>
-        <label>Urgent</label>
+    <div class="col-lg-12">
+        <label class="col-lg-2">Urgent</label>
         <input type="checkbox" name="urgent" th:field="*{urgent}">
     </div>
-    <div>
-        <label>Done</label>
+    <div class="col-lg-12">
+        <label class="col-lg-2">Done</label>
         <input type="checkbox" name="done" th:field="*{done}">
     </div>
-    <div>
-        <label for="date">Due date</label>
-        <input type="text" id="date" th:field="*{dueDate}" placeholder="2019. június 12.">
+    <div class="col-lg-12">
+        <label class="col-lg-2" for="date">Due date</label>
+        <input class="col-lg-3" type="text" id="date" th:field="*{dueDate}" placeholder="yyyy. mm. dd." required pattern="(?:19|20)[0-9]{2}. (?:(?:0[1-9]|1[0-2]). (?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31)).">
     </div>
-    <div>
-        <label>Assignee</label>
+    <div class="col-lg-12">
+        <label class="col-lg-2">Assignee</label>
         <select name="assigneeid">
             <option value="0" th:selected="${todo.assignee} == null ? 'selected' : ''">-</option>
             <div th:if="${todo.assignee} != null">
@@ -34,13 +35,14 @@
             <div th:if="${todo.assignee} == null">
                 <option th:each="assignee : ${assignees}" th:text="${assignee.name}" th:value="${assignee.id}"></option>
             </div>
-
         </select>
     </div>
-    <div>
-        <input type="submit" value="Submit">
-        <a th:href="'/todo/'">Cancel</a>
+    <div class="col-lg-12">
+        <input class="col-lg-1 btn btn-warning" style="margin-right: 20px" type="submit" value="Submit">
+        <a class="col-lg-1 btn btn-warning" style="background-color: gray; border-color: gray; text-decoration: none; color: white" th:href="'/todo/'">Cancel</a>
     </div>
 </form>
+<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>
