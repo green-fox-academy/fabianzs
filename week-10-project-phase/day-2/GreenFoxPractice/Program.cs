@@ -36,6 +36,8 @@ namespace GreenFoxPractice
             FileTest.FileAppendText("test.txt");
             FileTest.ReadFile("test.txt");
 
+            FileTest.CopyFile("..\\..\\file_to_copy.txt");
+
             FileTest.DivideByZero();
 
 

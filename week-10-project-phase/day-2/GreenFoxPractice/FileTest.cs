@@ -67,7 +67,7 @@ namespace GreenFoxPractice
                 double z = x / y;
                 //throw new Exception("Goodbye cruel world!");
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine(error.Message);
             }
@@ -83,6 +83,22 @@ namespace GreenFoxPractice
             foreach (string line in lines)
             {
                 File.AppendAllText(fileName, line + Environment.NewLine);
+            }
+        }
+
+        public static bool CopyFile(string fileName)
+        {
+            try
+            {
+                //DirectoryInfo dir = new DirectoryInfo(fileName);
+                List<string> allLines = File.ReadAllLines(fileName).ToList();
+                File.WriteAllLines("copied_file.txt", allLines);
+                return true;
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
     }

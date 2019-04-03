@@ -54,6 +54,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="file_to_copy.txt" />
     <Content Include="test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
