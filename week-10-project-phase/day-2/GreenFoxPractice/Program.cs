@@ -24,6 +24,20 @@ namespace GreenFoxPractice
 
             Console.WriteLine(StringTest.TakesLonger("Hofstadter's Law: It you expect, even when you take into account Hofstadter's Law."));
 
+            FileTest.WriteFile("test.txt");
+            FileTest.ReadFile("test.txt");
+
+            FileTest.WriteFileAdvanced(@"C:\Users\Zsófi\greenfox\fabianzs\week-10-project-phase\day-2\GreenFoxPractice\test.txt");
+            FileTest.ReadFileAdvanced(@"C:\Users\Zsófi\greenfox\fabianzs\week-10-project-phase\day-2\GreenFoxPractice\test.txt");
+
+            FileTest.WriteFileUsing("test.txt");
+            FileTest.ReadFile("test.txt");
+
+            FileTest.FileAppendText("test.txt");
+            FileTest.ReadFile("test.txt");
+
+            FileTest.DivideByZero();
+
 
             Console.ReadKey();
 

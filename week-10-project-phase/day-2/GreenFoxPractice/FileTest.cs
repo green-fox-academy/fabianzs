@@ -48,7 +48,7 @@ namespace GreenFoxPractice
 
         public static void WriteFileUsing(string fileName)
         {
-            string[] lines = {"And it seems I'm getting smaller", "Every day I feel minute", "Or is it you who's growing taller", "And the world just follows suit"};
+            string[] lines = { "And it seems I'm getting smaller", "Every day I feel minute", "Or is it you who's growing taller", "And the world just follows suit" };
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 foreach (string line in lines)
@@ -65,11 +65,24 @@ namespace GreenFoxPractice
                 int x = 11;
                 int y = 0;
                 double z = x / y;
+                //throw new Exception("Goodbye cruel world!");
             }
             catch(Exception error)
             {
                 Console.WriteLine(error.Message);
+            }
+            finally
+            {
                 Console.ReadKey();
+            }
+        }
+
+        public static void FileAppendText(string fileName)
+        {
+            string[] lines = { "I'm afraid of what you'll do", "You've discovered something new", "And it seems I can't compete", "I stand my ground but it's effete" };
+            foreach (string line in lines)
+            {
+                File.AppendAllText(fileName, line + Environment.NewLine);
             }
         }
     }
