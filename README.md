@@ -14,4 +14,7 @@
 **Megalotis foundation exam:** https://github.com/fabianzs/megalotis-foundation-normal-exam
 
 
-**Simple Todo App on heroku:** https://evening-plains-90441.herokuapp.com/todo  
+**Simple Todo App on heroku:** https://evening-plains-90441.herokuapp.com/todo
+
+
+**Advanced Todo App on heroku:** https://todolist-app-fzse.herokuapp.com/todo/
