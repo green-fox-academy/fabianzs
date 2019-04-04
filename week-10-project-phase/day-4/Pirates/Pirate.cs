@@ -98,9 +98,9 @@ namespace Pirates
             }
         }
 
-        public void AddParrot(Parrot parrot)
+        public void AddParrot(string name)
         {
-            Parrot = parrot;
+            Parrot = new Parrot(name);
         }
     }
 }
