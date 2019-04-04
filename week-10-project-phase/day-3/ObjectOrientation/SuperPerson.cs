@@ -8,6 +8,10 @@ namespace ObjectOrientation
 {
     class SuperPerson : Person
     {
+        public SuperPerson(string _firstName, string _lastName) : base(_firstName,_lastName)
+        {
+        }
+
         public void Fly()
         {
             Console.WriteLine("I am flying!");

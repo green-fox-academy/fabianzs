@@ -8,14 +8,6 @@ namespace ObjectOrientation
 {
     class Person
     {
-        private int myVar;
-
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
-
         private int _age;
         public int Age { get; set; }
         private string _firstName;
