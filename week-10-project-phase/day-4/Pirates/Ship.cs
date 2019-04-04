@@ -14,13 +14,13 @@ namespace Pirates
         public Ship()
         {
             this.Crew = new List<Pirate>();
-            this.FillShip();
+            this.FillShip(new Random().Next(50) + 1);
         }
 
-        public void FillShip()
+        public void FillShip(int number)
         {
             this.Captain = new Pirate();
-            for (int i = 0; i < new Random().Next(50) + 1; i++)
+            for (int i = 0; i < number; i++)
             {
                 Crew.Add(new Pirate());
             }
