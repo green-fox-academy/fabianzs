@@ -14,6 +14,9 @@ namespace Pirates
         private bool isDead;
         public bool IsDead { get; set; }
 
+        private bool isPassedOut;
+        public bool IsPassedOut { get; set; }
+
         private Parrot parrot;
         public Parrot Parrot { get; set; }
 
@@ -21,10 +24,16 @@ namespace Pirates
         {
             this.levelOfIntoxication = 0;
             this.isDead = false;
+            this.isPassedOut = false;
         }
 
         public void DrinkSomeRum()
         {
+            if (this.IsDead)
+            {
+                Console.WriteLine("He is dead.");
+                return;
+            }
             this.levelOfIntoxication++;
         }
 
@@ -39,14 +48,15 @@ namespace Pirates
             if(LevelOfIntoxication <= 4)
             {
                 Console.WriteLine("Pour me anudder!");
+                this.DrinkSomeRum();
             } else
             {
                 Console.WriteLine("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
-                this.Sleep();
+                this.IsPassedOut = true;
             }
         }
 
-        private void Sleep()
+        public void Sleep()
         {
             if (this.IsDead)
             {
@@ -54,9 +64,10 @@ namespace Pirates
                 return;
             }
             this.LevelOfIntoxication = 0;
+            this.IsPassedOut = false;
         }
 
-        private void Die()
+        public void Die()
         {
             if (this.IsDead)
             {
@@ -66,7 +77,7 @@ namespace Pirates
             this.IsDead = true;
         }
 
-        private void Brawl(Pirate pirate)
+        public void Brawl(Pirate pirate)
         {
             if (this.IsDead)
             {
@@ -84,16 +95,13 @@ namespace Pirates
             {
                 case 1:
                     this.Die();
-                    Console.WriteLine("He is dead.");
                     break;
                 case 2:
                     pirate.Die();
-                    Console.WriteLine("The other pirate is dead.");
                     break;
                 case 3:
-                    this.Die();
-                    pirate.Die();
-                    Console.WriteLine("They are both dead.");
+                    this.IsPassedOut = true;
+                    pirate.IsPassedOut = true;
                     break;
             }
         }

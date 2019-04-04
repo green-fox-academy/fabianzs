@@ -10,8 +10,11 @@ namespace Pirates
     {
         static void Main(string[] args)
         {
-            Pirate pirate = new Pirate();
-            pirate.LevelOfIntoxication = 24;
+            Pirate pirate1 = new Pirate();
+            Pirate pirate2 = new Pirate();
+
+            pirate1.Brawl(pirate2);
+
             Console.ReadKey();
         }
     }
