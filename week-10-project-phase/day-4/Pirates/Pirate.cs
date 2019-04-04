@@ -9,22 +9,24 @@ namespace Pirates
     class Pirate
     {
         private int levelOfIntoxication;
-        public int LevelOfIntoxication { get; set; }
+        public int LevelOfIntoxication { get => levelOfIntoxication; set => levelOfIntoxication = value; }
+        
 
         private bool isDead;
-        public bool IsDead { get; set; }
+        public bool IsDead { get => isDead; set => isDead = value; }
+        
 
         private bool isPassedOut;
-        public bool IsPassedOut { get; set; }
+        public bool IsPassedOut { get => isPassedOut; set => isPassedOut = value; }
 
         private Parrot parrot;
-        public Parrot Parrot { get; set; }
+        internal Parrot Parrot { get => parrot; set => parrot = value; }
 
         public Pirate()
         {
-            this.levelOfIntoxication = 0;
-            this.isDead = false;
-            this.isPassedOut = false;
+            this.LevelOfIntoxication = 0;
+            this.IsDead = false;
+            this.IsPassedOut = false;
         }
 
         public void DrinkSomeRum()
@@ -34,7 +36,7 @@ namespace Pirates
                 Console.WriteLine("He is dead.");
                 return;
             }
-            this.levelOfIntoxication++;
+            this.LevelOfIntoxication++;
         }
 
         public void HowsItGoingMate()
@@ -102,6 +104,7 @@ namespace Pirates
                 case 3:
                     this.IsPassedOut = true;
                     pirate.IsPassedOut = true;
+                    Console.WriteLine("They are both dead.");
                     break;
             }
         }

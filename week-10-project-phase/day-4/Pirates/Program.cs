@@ -10,10 +10,14 @@ namespace Pirates
     {
         static void Main(string[] args)
         {
-            Pirate pirate1 = new Pirate();
-            Pirate pirate2 = new Pirate();
-
-            pirate1.Brawl(pirate2);
+            Ship ship1 = new Ship();
+            ship1.IntroduceYourCaptainAndCrew();
+            Ship ship2 = new Ship();
+            ship2.IntroduceYourCaptainAndCrew();
+            Console.WriteLine(ship1.Battle(ship2));
+            ship1.IntroduceYourCaptainAndCrew();
+            ship2.IntroduceYourCaptainAndCrew();
+            ship2.Captain.HowsItGoingMate();
 
             Console.ReadKey();
         }
