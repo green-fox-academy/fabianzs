@@ -1,0 +1,33 @@
+﻿@model BankOfSimba.ViewModels.AccountListViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <link href="~/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Animal Type</th>
+            <th>King</th>
+            <th>Bad/Good</th>
+        </tr>
+        @foreach (var BankAccount in Model.BankAccounts)
+        {
+            <tr class="@(BankAccount.IsKing ? "king" : "")">
+                <td class="index">@BankAccount.Id</td>
+                <td>@BankAccount.Name</td>
+                <td>@BankAccount.Balance.ToString("0.00") Zebra</td>
+                <td>@BankAccount.AnimalType</td>
+                <td class="index"> @(BankAccount.IsKing ? "King" : " ")</td>
+                <td class="index">@(BankAccount.IsGood ? "Good guy" : "Bad one")</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
