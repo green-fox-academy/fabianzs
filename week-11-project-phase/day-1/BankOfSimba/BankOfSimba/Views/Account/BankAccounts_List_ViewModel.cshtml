@@ -29,5 +29,17 @@
             </tr>
         }
     </table>
+    <form asp-action="Add" asp-controller="Account" method="post">
+        <input type="text" asp-for="NewBankAccount.Name" required />
+        <input type="text" asp-for="NewBankAccount.Balance" required />
+        <input type="text" asp-for="NewBankAccount.AnimalType" required />
+        <label>King:</label>
+        <input type="checkbox" asp-for="NewBankAccount.IsKing" />
+        <label>Good:</label>
+        <input type="radio" name="good" value="true" asp-for="NewBankAccount.IsGood" checked="checked" required />
+        <label>Bad:</label>
+        <input type="radio" name="good" value="false" asp-for="NewBankAccount.IsGood" required />
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

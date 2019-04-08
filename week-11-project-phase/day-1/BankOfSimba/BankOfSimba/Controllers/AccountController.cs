@@ -40,9 +40,12 @@ namespace BankOfSimba.Controllers
         }
 
         [HttpPost("add")]
-        public void Add(BankAccount bankAccount)
+        public IActionResult Add(/*AccountListViewModel accountListViewModel*/ BankAccount bankAccount)
         {
             BankAccounts.Add(bankAccount);
+            //AccountListViewModel.BankAccounts.Add(accountListViewModel.NewBankAccount);
+
+            return RedirectToAction("List");
         }
     }
 }
