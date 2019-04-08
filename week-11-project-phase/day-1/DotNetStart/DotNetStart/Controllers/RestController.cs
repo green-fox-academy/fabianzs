@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetStart.Models;
@@ -12,10 +13,14 @@ namespace DotNetStart.Controllers
     [Route("api")]
     public class RestController : Controller
     {
+        [DefaultValue(1)]
+        private static int PageCounter { get; set; }
+
         [HttpGet("greeting")]
         public Greeting Greet(string name)
         {
-            return new Greeting(1, $"Hello, {name}!");
+            PageCounter++;
+            return new Greeting(PageCounter, $"Hello, {name}!");
         }
 
         // GET api/<controller>/5
