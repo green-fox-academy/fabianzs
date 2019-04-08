@@ -13,41 +13,36 @@ namespace BankOfSimba.Controllers
     [Route("")]
     public class AccountController : Controller
     {
-        //public AccountListViewModel AccountListViewModel { get; set; }
-        public List<BankAccount> BankAccounts { get; set; }
-
-        public AccountController()
+        //public static AccountListViewModel AccountListViewModel = new AccountListViewModel();
+        public static List<BankAccount> BankAccounts = new List<BankAccount>()
         {
-            BankAccounts = new List<BankAccount>();
-            BankAccounts.Add(new BankAccount("Simba", 2000, "lion", true, true));
-            BankAccounts.Add(new BankAccount("Timon", 200, "mungoose", false, true));
-            BankAccounts.Add(new BankAccount("Pumba", 350, "wart-hog", false, true));
-            BankAccounts.Add(new BankAccount("Ed", 800, "hyena", false, false));
-            BankAccounts.Add(new BankAccount("Mufasa", 3000, "lion", true, true));
-            BankAccounts.Add(new BankAccount("Zazu", 1000, "toucan", false, false));
-            BankAccounts.Add(new BankAccount("Nala", 1500, "lion", false, true));
-            BankAccounts.Add(new BankAccount("Shenzi", 900, "hyena", false, false));
-        }
+            new BankAccount("Simba", 2000, "lion", true, true),
+            new BankAccount("Timon", 200, "mungoose", false, true),
+            new BankAccount("Pumba", 350, "wart-hog", false, true),
+            new BankAccount("Ed", 800, "hyena", false, false),
+            new BankAccount("Mufasa", 3000, "lion", true, true),
+            new BankAccount("Zazu", 1000, "toucan", false, false),
+            new BankAccount("Nala", 1500, "lion", false, true),
+            new BankAccount("Shenzi", 900, "hyena", false, false)
+        };
 
         [HttpGet("show")]
         public IActionResult List()
         {
             ViewBag.BankAccounts = BankAccounts;
-            ViewBag.NewAccount = new BankAccount();
             return View("BankAccount_List");
         }
 
         [HttpGet("show/viewmodel")]
         public IActionResult ListWithViewModel()
         {
-            return View("BankAccounts_List_ViewModel", new AccountListViewModel());
+            return View("BankAccounts_List_ViewModel"/*, AccountListViewModel*/);
         }
 
         [HttpPost("add")]
         public void Add(BankAccount bankAccount)
         {
             BankAccounts.Add(bankAccount);
-            Console.WriteLine(BankAccounts.Count());
         }
     }
 }

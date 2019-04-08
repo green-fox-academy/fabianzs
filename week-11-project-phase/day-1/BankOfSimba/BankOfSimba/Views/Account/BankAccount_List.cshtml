@@ -1,5 +1,4 @@
-﻿@model BankOfSimba.Models.BankAccount
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,20 +25,19 @@
                 <td>@item.AnimalType</td>
                 <td class="index"> @(item.IsKing ? "King" : " ")</td>
                 <td class="index">@(item.IsGood ? "Good guy" : "Bad one")</td>
-                <td>ViewBag.NewAccount.Name</td>
             </tr>
         }
     </table>
-    <form asp-action="Add" asp-controller="Account" method="post">
-        <input type="text" asp-for="@Model.Name" required />
-        <input type="text" asp-for="@Model.Balance" required />
-        <input type="text" asp-for="@Model.AnimalType" required />
+    <form action="/add" method="post">
+        <input type="text" name="Name" required />
+        <input type="text" name="Balance" required />
+        <input type="text" name="AnimalType" required />
         <label>King:</label>
-        <input type="checkbox" asp-for="@Model.IsKing" required />
+        <input type="checkbox" name="IsKing" />
         <label>Good:</label>
-        <input type="radio" name="good" value="true" asp-for="@Model.IsGood" required />
+        <input type="radio" name="IsGood" value="true" checked="checked" required/>
         <label>Bad:</label>
-        <input type="radio" name="good" value="false" asp-for="@Model.IsGood" required />
+        <input type="radio" name="IsGood" value="false" required />
         <input type="submit" value="Submit">
     </form>
 </body>

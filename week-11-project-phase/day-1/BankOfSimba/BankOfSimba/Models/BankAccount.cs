@@ -19,8 +19,6 @@ namespace BankOfSimba.Models
         public BankAccount()
         {
             Id = globalId++;
-            IsKing = true;
-            IsGood = true;
         }
 
         public BankAccount(string name, int balance, string animalType, bool isKing, bool isGood)
