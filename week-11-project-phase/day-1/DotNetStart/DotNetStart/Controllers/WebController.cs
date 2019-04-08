@@ -34,7 +34,7 @@ namespace DotNetStart.Controllers
                 "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
 
             ViewData["hellos"] = hellos;
-            ViewData["random"] = new Random();
+            //ViewData["random"] = new Random();
 
             return View();
         }
@@ -49,7 +49,7 @@ namespace DotNetStart.Controllers
 
             Counter++;
             ViewData["hello"] = hellos[Counter-1];
-            ViewData["random"] = new Random();
+            //ViewData["random"] = new Random();
 
             return View();
         }
