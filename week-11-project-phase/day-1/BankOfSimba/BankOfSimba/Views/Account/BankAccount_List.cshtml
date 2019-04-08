@@ -28,6 +28,16 @@
             </tr>
         }
     </table>
+    <form action="/show" method="post">
+        <label>Raise the balance of a selected animal:</label>
+        <select name="animalIndex">
+            @foreach (BankOfSimba.Models.BankAccount item in ViewBag.BankAccounts)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+        <input type="submit" value="Raise Balance">
+    </form>
     <form action="/add" method="post">
         <label>Name:</label>
         <input type="text" name="Name" required />

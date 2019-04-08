@@ -33,6 +33,13 @@ namespace BankOfSimba.Controllers
             return View("BankAccount_List");
         }
 
+        [HttpPost("show")]
+        public IActionResult RaiseBalance(int animalIndex)
+        {
+            BankAccounts[animalIndex-1].RaiseBalance();
+            return RedirectToAction("List");
+        }
+
         [HttpGet("show/viewmodel")]
         public IActionResult ListWithViewModel()
         {
