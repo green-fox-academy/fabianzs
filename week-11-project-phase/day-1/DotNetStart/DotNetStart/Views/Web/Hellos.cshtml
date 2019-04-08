@@ -1,0 +1,17 @@
+﻿@{
+    Random random = ViewData["random"] as Random;
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+</head>
+<body>
+    @foreach (string hello in ViewData["hellos"] as IList<string>)
+    {
+        <p style="color: rgb(@random.Next(255), @random.Next(255), @random.Next(255)); font-size: @random.Next(50)px">
+            @hello
+        </p>
+    }
+</body>
+</html>

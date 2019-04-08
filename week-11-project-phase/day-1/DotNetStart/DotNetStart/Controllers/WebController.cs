@@ -14,15 +14,44 @@ namespace DotNetStart.Controllers
     public class WebController : Controller
     {
         [DefaultValue(1)]
-        private static int PageCounter { get; set; }
+        private static int Counter { get; set; }
 
         [HttpGet("greeting")]
         public IActionResult Greeting(string name)
         {
-            PageCounter++;
-            var greeting = new Greeting(PageCounter, name);
+            Counter++;
+            var greeting = new Greeting(Counter, name);
 
             return View(greeting);
+        }
+
+        [HttpGet("hellos")]
+        public IActionResult Hellos()
+        {
+            string[] hellos = {"Mirëdita", "Ahalan", "Parev", "Zdravei", "Nei Ho", "Dobrý den", "Ahoj", "Goddag", "Goede dag, Hallo", "Hello", "Saluton", "Hei", "Bonjour",
+                "Guten Tag", "Gia'sou", "Aloha", "Shalom", "Namaste", "Namaste", "Jó napot", "Halló", "Helló", "Góðan daginn", "Halo", "Aksunai", "Qanuipit", "Dia dhuit",
+                "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
+                "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
+
+            ViewData["hellos"] = hellos;
+            ViewData["random"] = new Random();
+
+            return View();
+        }
+
+        [HttpGet("hello")]
+        public IActionResult Hello()
+        {
+            string[] hellos = {"Mirëdita", "Ahalan", "Parev", "Zdravei", "Nei Ho", "Dobrý den", "Ahoj", "Goddag", "Goede dag, Hallo", "Hello", "Saluton", "Hei", "Bonjour",
+                "Guten Tag", "Gia'sou", "Aloha", "Shalom", "Namaste", "Namaste", "Jó napot", "Halló", "Helló", "Góðan daginn", "Halo", "Aksunai", "Qanuipit", "Dia dhuit",
+                "Salve", "Ciao", "Kon-nichiwa", "An-nyong Ha-se-yo", "Salvëte", "Ni hao", "Dzien' dobry", "Olá", "Bunã ziua", "Zdravstvuyte", "Hola", "Jambo", "Hujambo", "Hej",
+                "Sa-wat-dee", "Merhaba", "Selam", "Vitayu", "Xin chào", "Hylo", "Sut Mae", "Sholem Aleychem", "Sawubona"};
+
+            Counter++;
+            ViewData["hello"] = hellos[Counter-1];
+            ViewData["random"] = new Random();
+
+            return View();
         }
     }
 }
