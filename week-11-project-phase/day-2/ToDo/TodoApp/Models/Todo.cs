@@ -12,6 +12,10 @@ namespace TodoApp.Models
         public bool IsUrgent { get; set; }
         public bool IsDone { get; set; }
 
+        public Todo()
+        {
+        }
+
         public Todo(string title)
         {
             Title = title;
