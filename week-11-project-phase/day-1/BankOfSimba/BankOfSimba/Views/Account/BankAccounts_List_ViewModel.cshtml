@@ -29,16 +29,29 @@
             </tr>
         }
     </table>
-    <form asp-action="Add" asp-controller="Account" method="post">
-        <input type="text" asp-for="NewBankAccount.Name" required />
-        <input type="text" asp-for="NewBankAccount.Balance" required />
-        <input type="text" asp-for="NewBankAccount.AnimalType" required />
+    <form action="/show" method="post">
+        <label>Raise the balance of a selected animal:</label>
+        <select name="animalIndex">
+            @foreach (var BankAccount in Model.BankAccounts)
+            {
+                <option value="@BankAccount.Id">@BankAccount.Name</option>
+            }
+        </select>
+        <input type="submit" value="Raise Balance">
+    </form>
+    <form action="/add" method="post">
+        <label>Name:</label>
+        <input type="text" name="Name" required />
+        <label>Balance:</label>
+        <input type="text" name="Balance" required />
+        <label>Animal type:</label>
+        <input type="text" name="AnimalType" required />
         <label>King:</label>
-        <input type="checkbox" asp-for="NewBankAccount.IsKing" />
+        <input type="checkbox" name="IsKing" />
         <label>Good:</label>
-        <input type="radio" name="good" value="true" asp-for="NewBankAccount.IsGood" checked="checked" required />
+        <input type="radio" name="IsGood" value="true" checked="checked" required />
         <label>Bad:</label>
-        <input type="radio" name="good" value="false" asp-for="NewBankAccount.IsGood" required />
+        <input type="radio" name="IsGood" value="false" required />
         <input type="submit" value="Submit">
     </form>
 </body>

@@ -19,8 +19,6 @@ namespace BankOfSimba.ViewModels
             new BankAccount("Nala", 1500, "lion", false, true),
             new BankAccount("Shenzi", 900, "hyena", false, false)
         };
-        public BankAccount NewBankAccount { get; set; }
-
 
         public void AddBankAccount(BankAccount bankAccount)
         {
