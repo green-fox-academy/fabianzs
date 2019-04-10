@@ -1,16 +1,28 @@
-﻿@model IEnumerable<TodoApp.Models.Todo>
+﻿@model List<TodoApp.Models.Todo>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Getting Started: Serving Web Content</title>
+    <link href="~/Styles.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Todos for today:</h1>
-    <ul>
+    <h1>Number of todos: @Model.Count</h1>
+    <table>
+        <tr>
+            <th class="index">ID</th>
+            <th class="index">ACTION</th>
+            <th class="index">DONE</th>
+            <th class="index">URGENT</th>
+        </tr>
         @foreach (var todo in Model)
         {
-            <li>@todo.Title</li>
+            <tr>
+                <td class="index">@todo.Id</td>
+                <td>@todo.Title</td>
+                <td class="index">@todo.IsDone</td>
+                <td class="index">@todo.IsUrgent</td>
+            </tr>
         }
-    </ul>
+    </table>
 </body>
 </html>

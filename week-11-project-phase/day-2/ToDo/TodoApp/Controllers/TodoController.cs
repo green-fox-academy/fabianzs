@@ -45,7 +45,7 @@ namespace TodoApp.Controllers
             var todos = new List<Todo>();
             if (isActive)
             {
-                todos = applicationContext.Todos.Where<Todo>(t => !t.IsDone).ToList();
+                todos = applicationContext.Todos.Where(t => !t.IsDone).ToList();
             }
             else {
                 todos = applicationContext.Todos.ToList();
