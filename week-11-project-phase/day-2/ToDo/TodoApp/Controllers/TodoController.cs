@@ -21,8 +21,8 @@ namespace TodoApp.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        [Route("list")]
+        [Route("simple")]
+        [Route("simple/list")]
         public IActionResult List()
         {
             List<Todo> todoList = new List<Todo>()
@@ -33,14 +33,23 @@ namespace TodoApp.Controllers
                 new Todo("Create a CRUD project")
             };
             return View(todoList);
+            //return Content("This is my first todo");
         }
 
         [HttpGet]
-        [Route("database")]
-        public IActionResult Index()
+        [Route("")]
+        [Route("list")]
+        public IActionResult Index(bool isActive)
         {
             // Create a SQL query in the background
-            var todos = applicationContext.Todos.ToList();
+            var todos = new List<Todo>();
+            if (isActive)
+            {
+                todos = applicationContext.Todos.Where<Todo>(t => !t.IsDone).ToList();
+            }
+            else {
+                todos = applicationContext.Todos.ToList();
+            }
 
             return View(todos);
         }
