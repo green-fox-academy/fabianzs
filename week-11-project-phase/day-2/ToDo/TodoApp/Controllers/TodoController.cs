@@ -23,7 +23,7 @@ namespace TodoApp.Controllers
         [HttpGet]
         [Route("simple")]
         [Route("simple/list")]
-        public IActionResult List()
+        public IActionResult SimpleList()
         {
             List<Todo> todoList = new List<Todo>()
             {
@@ -39,19 +39,45 @@ namespace TodoApp.Controllers
         [HttpGet]
         [Route("")]
         [Route("list")]
-        public IActionResult Index(bool isActive)
+        public IActionResult List([FromQuery] string isActive)
         {
             // Create a SQL query in the background
             var todos = new List<Todo>();
-            if (isActive)
+            if (isActive == null)
             {
-                todos = applicationContext.Todos.Where(t => !t.IsDone).ToList();
-            }
-            else {
                 todos = applicationContext.Todos.ToList();
             }
 
+            if (isActive != null)
+            {
+                if (isActive.Equals("true"))
+                {
+                    todos = applicationContext.Todos.Where(t => !t.IsDone).ToList();
+                }
+                if (isActive.Equals("false"))
+                {
+                    todos = applicationContext.Todos.Where(t => t.IsDone).ToList();
+                }
+            }
+            
             return View(todos);
         }
+
+        [HttpGet]
+        [Route("add")]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult Save(Todo todo)
+        {
+            applicationContext.Add(todo);
+            applicationContext.SaveChanges();
+            return Redirect("list");
+        }
+
     }
 }
