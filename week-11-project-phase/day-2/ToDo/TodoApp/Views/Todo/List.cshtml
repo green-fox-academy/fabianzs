@@ -1,4 +1,5 @@
-﻿@model List<TodoApp.Models.Todo>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<TodoApp.Models.Todo>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,12 +8,15 @@
 </head>
 <body>
     <h1>Number of todos: @Model.Count</h1>
+    <a href="/todo/add">Add new todo</a>
     <table>
         <tr>
             <th class="index">ID</th>
             <th class="index">ACTION</th>
             <th class="index">DONE</th>
             <th class="index">URGENT</th>
+            <th class="index"></th>
+            <th class="index"></th>
         </tr>
         @foreach (var todo in Model)
         {
@@ -21,6 +25,8 @@
                 <td>@todo.Title</td>
                 <td class="index">@todo.IsDone</td>
                 <td class="index">@todo.IsUrgent</td>
+                <td><a asp-controller="Todo" asp-action="Delete" asp-route-id="@todo.Id">delete</a></td>
+                <td><a asp-controller="Todo" asp-action="GetUpdatePage" asp-route-id="@todo.Id">update</a></td>
             </tr>
         }
     </table>

@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using TodoApp.Data;
 using TodoApp.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace TodoApp.Controllers
 {
     [Route("todo")]
@@ -47,8 +45,7 @@ namespace TodoApp.Controllers
             {
                 todos = applicationContext.Todos.ToList();
             }
-
-            if (isActive != null)
+            else
             {
                 if (isActive.Equals("true"))
                 {
@@ -59,25 +56,50 @@ namespace TodoApp.Controllers
                     todos = applicationContext.Todos.Where(t => t.IsDone).ToList();
                 }
             }
-            
             return View(todos);
         }
 
         [HttpGet]
         [Route("add")]
-        public IActionResult Add()
+        public IActionResult GetAddPage()
         {
-            return View();
+            return View("Add");
         }
 
         [HttpPost]
         [Route("add")]
-        public IActionResult Save(Todo todo)
+        public IActionResult Add(Todo todo)
         {
             applicationContext.Add(todo);
             applicationContext.SaveChanges();
             return Redirect("list");
         }
 
+        [HttpGet]
+        [Route("{id}/delete")]
+        public IActionResult Delete([FromRoute] long Id)
+        {
+            Todo deletedTodo = applicationContext.Todos.FirstOrDefault(t => t.Id == Id);
+            applicationContext.Remove(deletedTodo);
+            applicationContext.SaveChanges();
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        [Route("{id}/update")]
+        public IActionResult GetUpdatePage([FromRoute] long Id)
+        {
+            Todo editableTodo = applicationContext.Todos.FirstOrDefault(t => t.Id == Id);
+            return View("Update", editableTodo);
+        }
+
+        [HttpPost]
+        [Route("{id}/update")]
+        public IActionResult Update(Todo todo)
+        {
+            applicationContext.Update(todo);
+            applicationContext.SaveChanges();
+            return RedirectToAction("List");
+        }
     }
 }
