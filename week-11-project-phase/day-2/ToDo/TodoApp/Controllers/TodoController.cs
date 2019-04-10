@@ -85,6 +85,16 @@ namespace TodoApp.Controllers
             return RedirectToAction("List");
         }
 
+        [HttpDelete]
+        [Route("{id}/delete")]
+        public IActionResult DeleteWithPostman([FromRoute] long Id)
+        {
+            Todo deletedTodo = applicationContext.Todos.FirstOrDefault(t => t.Id == Id);
+            applicationContext.Remove(deletedTodo);
+            applicationContext.SaveChanges();
+            return RedirectToAction("List");
+        }
+
         [HttpGet]
         [Route("{id}/update")]
         public IActionResult GetUpdatePage([FromRoute] long Id)
