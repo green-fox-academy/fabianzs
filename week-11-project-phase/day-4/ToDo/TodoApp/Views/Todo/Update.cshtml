@@ -1,0 +1,39 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TodoWebApp.Models.Todo
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <link href="~/Styles.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Edit todo</h1>
+    <form asp-controller="Todo" asp-action="Update" asp-route-id="@Model.Id" method="post">
+        <div>
+            <label>Todo Description</label>
+            <input type="text" asp-for="Title" required />
+        </div>
+        <div>
+            <label>Done</label>
+            <input type="checkbox" asp-for="IsDone" />
+        </div>
+        <div>
+            <label>Urgent</label>
+            <input type="checkbox" asp-for="IsUrgent" />
+        </div>
+        <div>
+            <select name="assigneeId">
+                <option value="0" selected="selected">-</option>
+                @foreach (TodoWebApp.Models.Assignee assignee in ViewData["assignees"] as List<TodoWebApp.Models.Assignee>)
+                {
+                    <option value="@assignee.Id">@assignee.Name</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+            <a href="/todo/">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>
