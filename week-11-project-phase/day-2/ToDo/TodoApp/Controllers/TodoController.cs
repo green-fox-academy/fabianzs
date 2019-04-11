@@ -92,7 +92,7 @@ namespace TodoApp.Controllers
             Todo deletedTodo = applicationContext.Todos.FirstOrDefault(t => t.Id == Id);
             applicationContext.Remove(deletedTodo);
             applicationContext.SaveChanges();
-            return RedirectToAction("List");
+            return Ok();
         }
 
         [HttpGet]
@@ -106,6 +106,25 @@ namespace TodoApp.Controllers
         [HttpPost]
         [Route("{id}/update")]
         public IActionResult Update(Todo todo)
+        {
+            applicationContext.Update(todo);
+            applicationContext.SaveChanges();
+            return RedirectToAction("List");
+        }
+
+        [HttpPut]
+        [Route("{id}/update")]
+        public IActionResult UpdateWithPostman([FromRoute]long id,Todo todo)
+        {
+            todo.Id = id;
+            applicationContext.Update(todo);
+            applicationContext.SaveChanges();
+            return RedirectToAction("List");
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public IActionResult UpdateWithPostmanWithAPI([FromBody] Todo todo)
         {
             applicationContext.Update(todo);
             applicationContext.SaveChanges();
