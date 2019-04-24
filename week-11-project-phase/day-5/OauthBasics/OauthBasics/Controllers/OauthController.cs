@@ -11,45 +11,53 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 using OauthBasics.Models;
+using OauthBasics.Services;
 
 namespace OauthBasics.Controllers
 {
     //[Route("api/[controller]")]
     //[ApiController]
-    public class OauthController : Controller
+    public class OauthController : ControllerBase
     {
+        private readonly IAuthService _authService;
+
+        public OauthController(IAuthService authService, IConfiguration configuration)
+        {
+            _authService = authService;
+        }
 
         [HttpGet("")]
         public IActionResult Index()
         {
-            string googleAuth = "https://accounts.google.com/o/oauth2/v2/auth?scope=email+openid&redirect_uri=https://localhost:5001/auth&response_type=code&client_id=605865129946-9dh1mjotllviruol1b4tcrlad178io4h.apps.googleusercontent.com";
-            return Redirect(googleAuth);
+            return Redirect(_authService.GetGoogleLogin());
         }
 
         [HttpGet("/auth")]
-        public async Task<IActionResult> Auth(string code)
+        public IActionResult Auth(string code)
         {
+            GoogleToken token = _authService.GetToken(code);
+            string id_token = token.id_token;
+            bool isValid = _authService.ValidateToken(token.id_token);
 
-            string request = "";
-            if (code != null)
+            if(isValid)
             {
-                request = "https://accounts.google.com/o/oauth2/v2/token?code=" + code + "&client_id=605865129946-9dh1mjotllviruol1b4tcrlad178io4h.apps.googleusercontent.com&client_secret=l3GY_8FhXxsMcSeWh8NUdlb3&redirect_uri=https://localhost:5001/auth&grant_type=authorization_code";
+                var tokenstring = _authService.CreateJwtToken();
+
+                return Ok(tokenstring);
             }
-
-            GoogleToken token = await Services.AuthenticationService.PostTo(code);
-
-
-            return RedirectToAction("VerifyToken"/*, token.id_token*/);
-            //return Redirect(request);
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        [HttpGet]
-        public IActionResult VerifyToken(string token)
+        [Authorize]
+        [HttpGet("/test")]
+        public IActionResult TestMethod()
         {
-            string request = "https://oauth2.googleapis.com/tokeninfo?id_token=" + token;
-            return Redirect(request);
+            return Ok();
         }
-
     }
 }

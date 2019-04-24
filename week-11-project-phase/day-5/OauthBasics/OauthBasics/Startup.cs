@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using OauthBasics.Services;
 
 namespace OauthBasics
 {
@@ -25,12 +26,12 @@ namespace OauthBasics
 
         private readonly IConfiguration configuration;
 
-        public object UIFramework { get; private set; }
 
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
@@ -38,26 +39,26 @@ namespace OauthBasics
             //services.AddDefaultIdentity<IdentityUser>()
             //    .AddDefaultUI(UIFramework.Bootstrap4)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddAuthentication(o =>
-            {
-                o.DefaultScheme = "Application";
-                o.DefaultSignInScheme = "External";
-            })
-                .AddCookie("Application")
-                .AddCookie("External")
-                .AddGoogle("Google", googleOptions =>
-            {
-                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-                googleOptions.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/userinfo";
-                googleOptions.ClaimActions.Clear();
-                googleOptions.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
-                googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-                googleOptions.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "given_name");
-                googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Surname, "family_name");
-                googleOptions.ClaimActions.MapJsonKey("urn:google:profile", "link");
-                googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-            })
+            //services.AddAuthentication(o =>
+            //{
+            //    o.DefaultScheme = "Application";
+            //    o.DefaultSignInScheme = "External";
+            //})
+            //    .AddCookie("Application")
+            //    .AddCookie("External")
+            //    .AddGoogle("Google", googleOptions =>
+            //{
+            //    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            //    googleOptions.UserInformationEndpoint = "https://www.googleapis.com/oauth2/v2/userinfo";
+            //    googleOptions.ClaimActions.Clear();
+            //    googleOptions.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+            //    googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+            //    googleOptions.ClaimActions.MapJsonKey(ClaimTypes.GivenName, "given_name");
+            //    googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Surname, "family_name");
+            //    googleOptions.ClaimActions.MapJsonKey("urn:google:profile", "link");
+            //    googleOptions.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+            //})
             //.AddOpenIdConnect(o =>
             //{
             //    o.AuthenticationMethod = "oidc";
@@ -73,11 +74,33 @@ namespace OauthBasics
             //    };
             //    o.SaveTokens = true;
             //})
-            ;
+            //;
+
+            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                    .RequireAuthenticatedUser().Build());
+            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings").Get<AppSettings>().Secret)),
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
 
 
 
             services.AddMvc();
+            services.AddSingleton<IAuthService, AuthService>();
 
         }
 
