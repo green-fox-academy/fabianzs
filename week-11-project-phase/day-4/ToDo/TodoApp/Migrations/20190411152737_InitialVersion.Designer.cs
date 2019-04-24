@@ -10,7 +10,7 @@ using TodoWebApp.Data;
 namespace TodoWebApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190411135419_InitialVersion")]
+    [Migration("20190411152737_InitialVersion")]
     partial class InitialVersion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace TodoWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Assignee");
+                    b.ToTable("Assignees");
                 });
 
             modelBuilder.Entity("TodoWebApp.Models.Todo", b =>

@@ -26,9 +26,13 @@ namespace TodoWebApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationContext>(builder =>
-            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc();
+            services.AddDbContext<ApplicationContext>(
+                builder =>  builder .UseLazyLoadingProxies()
+                                    .UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc().AddJsonOptions(
+            options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            ;
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

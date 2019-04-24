@@ -15,6 +15,6 @@ namespace TodoWebApp.Models
         [Required]
         public string Email{ get; set; }
 
-        public List<Todo> Todos { get; set; }
+        public virtual List<Todo> Todos { get; set; }
     }
 }

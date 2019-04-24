@@ -33,7 +33,7 @@ namespace TodoWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Assignee");
+                    b.ToTable("Assignees");
                 });
 
             modelBuilder.Entity("TodoWebApp.Models.Todo", b =>

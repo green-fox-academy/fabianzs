@@ -101,7 +101,7 @@ namespace TodoWebApp.Controllers
         public IActionResult GetUpdatePage([FromRoute] long Id)
         {
             Todo editableTodo = applicationContext.Todos.FirstOrDefault(t => t.Id == Id);
-            ViewData["assignees"] = applicationContext.Assignee.ToList();
+            ViewData["assignees"] = applicationContext.Assignees.ToList();
             return View("Update", editableTodo);
         }
 
@@ -111,7 +111,7 @@ namespace TodoWebApp.Controllers
         {
             if (assigneeId != 0)
             {
-                todo.Assignee = (applicationContext.Assignee.Find(assigneeId));
+                todo.Assignee = (applicationContext.Assignees.Find(assigneeId));
             }
             applicationContext.Update(todo);
             applicationContext.SaveChanges();

@@ -8,7 +8,7 @@ namespace TodoWebApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Assignee",
+                name: "Assignees",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
@@ -18,7 +18,7 @@ namespace TodoWebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assignee", x => x.Id);
+                    table.PrimaryKey("PK_Assignees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -36,9 +36,9 @@ namespace TodoWebApp.Migrations
                 {
                     table.PrimaryKey("PK_Todos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Todos_Assignee_AssigneeId",
+                        name: "FK_Todos_Assignees_AssigneeId",
                         column: x => x.AssigneeId,
-                        principalTable: "Assignee",
+                        principalTable: "Assignees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -55,7 +55,7 @@ namespace TodoWebApp.Migrations
                 name: "Todos");
 
             migrationBuilder.DropTable(
-                name: "Assignee");
+                name: "Assignees");
         }
     }
 }

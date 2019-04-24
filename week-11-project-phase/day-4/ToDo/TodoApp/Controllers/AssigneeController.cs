@@ -25,7 +25,7 @@ namespace TodoWebApp.Controllers
         public IActionResult List()
         {
             // Create a SQL query in the background
-            var assignees = applicationContext.Assignee.ToList();
+            var assignees = applicationContext.Assignees.ToList();
             
             return View(assignees);
         }
@@ -50,9 +50,17 @@ namespace TodoWebApp.Controllers
         [Route("{id}/todos")]
         public IActionResult ListTodos([FromRoute] long Id)
         {
-            Assignee assignee = applicationContext.Assignee.Include(a => a.Todos).FirstOrDefault(a => a.Id == Id);
+            Assignee assignee = applicationContext.Assignees.Include(a => a.Todos).FirstOrDefault(a => a.Id == Id);
             List<Todo> todos = assignee.Todos;
             return View("Todos", todos);
+        }
+
+        [HttpGet]
+        [Route("api/{id}/todos")]
+        public Object ListTodosJson([FromRoute] long Id)
+        {
+            List<Todo> todos = applicationContext.Assignees.FirstOrDefault(a => a.Id == Id).Todos;
+            return todos;
         }
 
         [HttpGet]

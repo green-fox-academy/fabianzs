@@ -16,7 +16,7 @@ namespace TodoWebApp.Models
         public bool IsDone { get; set; }
 
         public long? AssigneeId { get; set; }
-        public Assignee Assignee { get; set; } 
+        public virtual Assignee Assignee { get; set; } 
 
         public Todo()
         {
